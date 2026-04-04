@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script class="dummy" id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2a60d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221c10",
+                        "charcoal": "#1c170d",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Avcılar Kentsel Dönüşüm ve İnşaat Projeleri - Doruk İnşaat</title>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-charcoal/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+
+<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+
+<div class="flex items-center gap-2">
+<div class="text-primary">
+
+<svg class="h-8 w-8" fill="none" viewBox="0 0 48 48">
+<path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648Z" fill="currentColor"></path>
+</svg>
+
+</div>
+
+<h1 class="text-2xl font-black tracking-tight text-charcoal dark:text-white uppercase">
+Doruk İnşaat Avcılar
+</h1>
+
+</div>
+
+<nav class="hidden md:flex items-center gap-8">
+
+<a class="text-sm font-semibold hover:text-primary transition-colors"
+href="index.html">
+Ana Sayfa
+</a>
+
+<a class="text-sm font-semibold hover:text-primary transition-colors"
+href="hakkimizda.html">
+Hakkımızda
+</a>
+
+<a class="text-sm font-semibold hover:text-primary transition-colors"
+href="projeler.html">
+Projeler
+</a>
+
+<a class="text-sm font-semibold hover:text-primary transition-colors"
+href="iletisim.html">
+İletişim
+</a>
+
+</nav>
+
+<a href="teklifal.html">
+
+<button class="bg-primary hover:bg-primary/90 text-charcoal font-bold py-2 px-6 rounded-lg text-sm transition-all shadow-lg shadow-primary/20">
+Teklif Al
+</button>
+
+</a>
+
+</div>
+
+</header>
+<main class="flex flex-1 flex-col items-center">
+<div class="w-full max-w-[1280px] px-6 py-12 lg:px-20">
+<!-- Page Header & Title -->
+<div class="flex flex-col gap-4 mb-12">
+<div class="flex items-center gap-2 text-primary font-bold tracking-widest uppercase text-xs">
+<span class="h-[2px] w-8 bg-primary"></span>
+<span>Portföyümüz</span>
+</div>
+<h1 class="text-slate-900 dark:text-white text-5xl font-black leading-tight tracking-tight">Avcılar Projelerimiz</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl leading-relaxed">Avcılar'ın çehresini değiştiren, güvenli ve modern kentsel dönüşüm projelerimizle geleceği inşa ediyoruz. Depreme dayanıklı ve estetik yaşam alanlarımızı keşfedin.</p>
+</div>
+<!-- Filter Buttons -->
+<div class="flex flex-wrap items-center gap-3 mb-10">
+<button class="px-6 py-2.5 rounded-full bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 transition-all hover:scale-105">
+                            Hepsi
+                        </button>
+<button class="px-6 py-2.5 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 font-semibold text-sm hover:border-primary hover:text-primary transition-all">
+                            Tamamlanan
+                        </button>
+<button class="px-6 py-2.5 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 font-semibold text-sm hover:border-primary hover:text-primary transition-all">
+                            Devam Eden
+                        </button>
+</div>
+<!-- Projects Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Project Card 1 -->
+<div class="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300">
+<div class="relative aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-110" data-alt="Avcılar sahilinde modern mimarili lüks konut inşaat projesi" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDu9E6vf1mRpTDNlu0kdXH1KRoYZtbuMLjPIE9IdIT5eyXwkcv431jR2W6BVQgfZ8EHpU12guqoB5SSgU9Vn-IH_uVtmCAr2hyLbgK4iMj_gphjJjJNP28GnhQabXcaMnqiS4SAub2ZWIetkh0AA2Cx1p18ewacO_buZDKaP3-2jBNHxRyHP64QB7h1iozmClvZJcbexzyEHbnS7KYOtixtDPbK6VRFpc7KiQW0dELnvZWbHjX179znIa1lZ4hM6_wOvPyhffEmSaM");'></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded bg-primary text-white text-xs font-bold uppercase tracking-wider">İstanbul, Avcılar Merkez</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-2">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Avcılar Sahil Konakları</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Avcılar sahil şeridinde, deniz manzaralı ve geniş sosyal olanaklara sahip lüks kentsel dönüşüm projesi.</p>
+<div class="mt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-700 pt-4">
+<div class="flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-xs">İstanbul, Avcılar Merkez</span>
+</div>
+<a href="projelerdetay.html">
+<button class="text-primary font-bold text-sm flex items-center gap-1">
+                                        Detaylar <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button></a>
+</div>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300">
+<div class="relative aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-110" data-alt="Avcılar Gümüşpala bölgesinde devam eden modern kentsel dönüşüm inşaatı" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDjW3GdABvKzqW0kkYo56Adm_pWK_9VYD61CeNm84HS2zckjfGJ1ytC3hVFXx4iLIVfciwQU5TCkqjain6jYXozvY8WkK21eOo1R96Q_hzHnha7jXmvu7znmez_kzrNn5Jl8IuvaGPnCC9g21Fn8u50ntLV_C6XnDBolldK3n3G9YJOmyPW6DTYBf3pQN_yyVFCA4ibVyr8o6YzLhXSNBMd9mAuGRvd6IQEE4706vKc9b4H8BZk4ssBdGhrh8TSWHxxG9jz2NQWr7M");'></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded bg-slate-900 text-white text-xs font-bold uppercase tracking-wider">İstanbul, Avcılar Gümüşpala</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-2">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Gümüşpala Kentsel Dönüşüm</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Gümüşpala mahallesinde deprem yönetmeliğine uygun, modern mimariyle yenilenen güvenli yaşam alanları.</p>
+<div class="mt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-700 pt-4">
+<div class="flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-xs">İstanbul, Avcılar Gümüşpala</span>
+</div>
+<button class="text-primary font-bold text-sm flex items-center gap-1">
+                                        Detaylar <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300">
+<div class="relative aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-110" data-alt="Avcılar Cihangir mahallesinde tamamlanan yeşil alanlı konut sitesi projesi" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAOHCPEjEkEDeDD-i8u6RHprNRaZarjJtqddpCupngLL_7bTkBUnKCYYyoG0Znk3MQmxx_ic25ektzJ99w_opGZKvMLVG7v__prQo2bYRbhi4r1aC2WvhCyL-N4Hj0bM-ofQT8GCKD95yps5GBdq1Q6HgcSpd1xhV5kp6wrhNdIqhTwfZ0euOQbE4tEoZ0N3yONOxDbuy2uQgLFhBO55PFSJFUFRyI-7FN7ymSodTisUfOGZOdJRVpkY_Nus_TdcxmNkisbErasn0I");'></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded bg-primary text-white text-xs font-bold uppercase tracking-wider">İstanbul, Avcılar Cihangir</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-2">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Cihangir Modern Evleri</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Avcılar Cihangir'de ulaşım akslarına yakın, aileler için tasarlanmış prestijli konut projesi.</p>
+<div class="mt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-700 pt-4">
+<div class="flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-xs">İstanbul, Avcılar Cihangir</span>
+</div>
+<button class="text-primary font-bold text-sm flex items-center gap-1">
+                                        Detaylar <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Project Card 4 -->
+<div class="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300">
+<div class="relative aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-110" data-alt="Avcılar Parseller bölgesinde teknolojik ofis ve plaza inşaat projesi" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAb4SThBoyGaifta-9BdjZqdZ6HV3R63RTH3huewCKLmuzBPDJXJ4ETRZX4NPtDK4dWsMF1TxmM1Nk5tmolnaOtKODau5Tb-Ofz3jS6PQkNEDHlEy-uIpsSS9DGujfxjEYyiyd8EsX8EBkjVHnz4O6ZvOeFRRZCHfeL0hpnRaArTPko8ehixghhok4srzsRgBicflSxYEqlNgqweHO9dV5BGZFgsloZ5GjYOiBNqU--22w6q77KAFmDSnIc8jKBFKoZyZuuK2J_NJ8");'></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded bg-slate-900 text-white text-xs font-bold uppercase tracking-wider">İstanbul, Avcılar Parseller</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-2">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Parseller İş Merkezi</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Avcılar Parseller bölgesinde ticari hayatın yeni kalbi, akıllı ofis sistemleri ile donatılmış plaza.</p>
+<div class="mt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-700 pt-4">
+<div class="flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-xs">İstanbul, Avcılar Parseller</span>
+</div>
+<button class="text-primary font-bold text-sm flex items-center gap-1">
+                                        Detaylar <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Project Card 5 -->
+<div class="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300">
+<div class="relative aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-110" data-alt="Avcılar Denizköşkler sahil bölgesinde yenilenmiş lüks rezidans binası" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuzLvMuUHtxQ5hTh4u7TmjJXm95VijHBh8PcJaQ5MWHsCso7aBgTb6UH424D70-0LPK-P6GutI_EpbKorvhsUYXF9VI_VjM4sTF0yaYA1jujKp2FDpeM_FoPQdXuwhpC73GbMR8sHG7LL3tfgORxmxXySpnmF07QA6J_0sRyFCK4hID0rnCPY-2u64fK5c3bRzyriYImFdESUtNJnVxTZbk_PhuvPPpHfALLPRUEp03-sfMnwnlHs_PYMIhDiwZQEEqqfgve-Rxxc");'></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded bg-primary text-white text-xs font-bold uppercase tracking-wider">İstanbul, Avcılar Denizköşkler</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-2">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Denizköşkler Rezidans</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Denizköşkler mahallesinde butik kentsel dönüşüm projesi, modern iç tasarım ve yüksek inşaat kalitesi.</p>
+<div class="mt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-700 pt-4">
+<div class="flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-xs">İstanbul, Avcılar Denizköşkler</span>
+</div>
+<button class="text-primary font-bold text-sm flex items-center gap-1">
+                                        Detaylar <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Project Card 6 -->
+<div class="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300">
+<div class="relative aspect-[4/3] overflow-hidden">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-110" data-alt="Avcılar Ispartakule-Tahtakale bölgesinde büyük karma kullanım inşaat projesi" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzjf9KaTQ1ze0ma267PT9mTYQSpVgRK1EEtqmIBEoJNG7-Ndt6ROWGSnKQEwRJ2gBY3rTrCrO-Z_chEit0GKVWTZQfYkhJplDWasVbItbkAuX_ps7rMmYiVQh_HyxY7M_6y7olg3IUYEYmLTrTgImyPRNQ620ox4M67M98TRUFwza1cgAS7GkUGjbLV0iorfv17Es2zCGmbR3TKCdEqg-SUns0uzkWI_ZG1VZ9AKpXiILY-WUCl7XRvqNGasgbYLJvhaoeiR-SSeA");'></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded bg-slate-900 text-white text-xs font-bold uppercase tracking-wider">İstanbul, Avcılar Tahtakale</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-2">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Tahtakale Yaşam Kompleksi</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Ispartakule ve Tahtakale bölgesinde yeni nesil alışveriş merkezi ve konut karma projesi.</p>
+<div class="mt-4 flex items-center justify-between border-t border-slate-100 dark:border-slate-700 pt-4">
+<div class="flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-xs">İstanbul, Avcılar Tahtakale</span>
+</div>
+<button class="text-primary font-bold text-sm flex items-center gap-1">
+                                        Detaylar <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Load More -->
+<div class="mt-16 flex justify-center">
+<button class="px-10 py-4 rounded-lg bg-slate-900 dark:bg-slate-700 text-white font-bold hover:bg-primary transition-colors flex items-center gap-3">
+                            Daha Fazla Yükle
+                            <span class="material-symbols-outlined" data-icon="refresh">refresh</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#1c170d] pt-24 pb-12 px-6 text-white border-t border-white/10">
+
+<div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-16">
+
+<!-- Logo + açıklama -->
+<div class="space-y-6">
+
+<div class="flex items-center gap-3">
+
+<div class="text-primary">
+<svg class="h-9 w-9" fill="none" viewBox="0 0 48 48">
+<path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648Z" fill="currentColor"/>
+</svg>
+</div>
+
+<span class="text-2xl font-black uppercase tracking-tight">
+Doruk İnşaat Avcılar
+</span>
+
+</div>
+
+<p class="text-slate-400 leading-relaxed">
+
+1987 yılından beri Avcılar merkezli faaliyet gösteren Doruk İnşaat,
+kentsel dönüşüm ve modern konut projelerinde güvenilir yaşam alanları
+inşa etmektedir.
+
+</p>
+
+</div>
+
+
+<!-- Menü -->
+<div class="space-y-6">
+
+<h4 class="text-xl font-bold border-l-4 border-primary pl-3">
+Kurumsal
+</h4>
+
+<ul class="space-y-3 text-slate-400">
+
+<li>
+<a href="index.html" class="hover:text-primary transition-colors">
+Ana Sayfa
+</a>
+</li>
+
+<li>
+<a href="hakkimizda.html" class="hover:text-primary transition-colors">
+Hakkımızda
+</a>
+</li>
+
+<li>
+<a href="projeler.html" class="hover:text-primary transition-colors">
+Projeler
+</a>
+</li>
+
+<li>
+<a href="teklifal.html" class="hover:text-primary transition-colors">
+Teklif Al
+</a>
+</li>
+
+<li>
+<a href="iletisim.html" class="hover:text-primary transition-colors">
+İletişim
+</a>
+</li>
+
+</ul>
+
+</div>
+
+
+<!-- Hizmetler -->
+<div class="space-y-6">
+
+<h4 class="text-xl font-bold border-l-4 border-primary pl-3">
+Hizmetlerimiz
+</h4>
+
+<ul class="space-y-3 text-slate-400">
+
+<li>Kentsel Dönüşüm</li>
+<li>Konut Projeleri</li>
+<li>Ticari Yapılar</li>
+<li>Gayrimenkul Geliştirme</li>
+
+</ul>
+
+</div>
+
+
+<!-- İletişim -->
+<div class="space-y-6">
+
+<h4 class="text-xl font-bold border-l-4 border-primary pl-3">
+İletişim
+</h4>
+
+<ul class="space-y-4 text-slate-400">
+
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>Avcılar / İstanbul</span>
+</li>
+
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">phone</span>
+<span>+90 5XX XXX XX XX</span>
+</li>
+
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span>info@dorukinsaatavcilar.com</span>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+<!-- Alt footer -->
+
+<div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+
+<p>
+© 2024 Doruk İnşaat Avcılar — Tüm Hakları Saklıdır
+</p>
+
+<div class="flex gap-6 mt-4 md:mt-0">
+
+<a href="#" class="hover:text-white transition-colors">
+KVKK
+</a>
+
+<a href="#" class="hover:text-white transition-colors">
+Gizlilik Politikası
+</a>
+
+</div>
+
+</div>
+
+</footer>
+</div>
+</div>
+</body></html>

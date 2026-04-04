@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script content='
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2a60d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221c10",
+                        "charcoal": "#1c170d",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    ' id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2a60d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221c10",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Hakkımızda - Doruk İnşaat</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-charcoal/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+
+<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+
+<div class="flex items-center gap-2">
+<div class="text-primary">
+
+<svg class="h-8 w-8" fill="none" viewBox="0 0 48 48">
+<path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648Z" fill="currentColor"></path>
+</svg>
+
+</div>
+
+<h1 class="text-2xl font-black tracking-tight text-charcoal dark:text-white uppercase">
+Doruk İnşaat Avcılar
+</h1>
+
+</div>
+
+<nav class="hidden md:flex items-center gap-8">
+
+<a class="text-sm font-semibold hover:text-primary transition-colors"
+href="index.html">
+Ana Sayfa
+</a>
+
+<a class="text-sm font-semibold hover:text-primary transition-colors"
+href="hakkimizda.html">
+Hakkımızda
+</a>
+
+<a class="text-sm font-semibold hover:text-primary transition-colors"
+href="projeler.html">
+Projeler
+</a>
+
+<a class="text-sm font-semibold hover:text-primary transition-colors"
+href="iletisim.html">
+İletişim
+</a>
+
+</nav>
+
+<a href="teklifal.html">
+
+<button class="bg-primary hover:bg-primary/90 text-charcoal font-bold py-2 px-6 rounded-lg text-sm transition-all shadow-lg shadow-primary/20">
+Teklif Al
+</button>
+
+</a>
+
+</div>
+
+</header>
+<!-- Hero Section -->
+<section class="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+<div class="absolute inset-0 bg-slate-900/40 z-10"></div>
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Modern construction site with cranes and sunset" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZN24tWIDGIp5am9cp-_0hlFFpa0GLLgUwJmoC3XTh_Q9NMfIekBczzvckCMR1xkK1dTj1acBqXEzotc2xajs8kkc4bg8d2dmTpMArfbeJfCh47X66Vda8UCgziOIuXmEcVOxkrNKCFWu0Kqa5bBfkeKELPfx2Ry2UZRuGVLnyQHTfAAZ0aEYg3ocroR5HZuyGm7Z7qLR6rpj-_578DBj8koVevQgbQvWC0bd9RxB3DL1rS_MLfjrie01Fa4vGtwCj-4jINhqvX_M')"></div>
+<div class="relative z-20 h-full flex flex-col items-center justify-center text-center px-4">
+<h1 class="text-white text-5xl md:text-7xl font-black mb-6 drop-shadow-lg uppercase tracking-tight">Hakkımızda</h1>
+<div class="h-1 w-24 bg-primary mb-6"></div>
+<p class="text-white text-lg md:text-xl max-w-2xl font-medium drop-shadow-md">
+                        Modern mimariyi mühendislik mükemmeliyetiyle birleştirerek geleceğin şehirlerini inşa ediyoruz.
+                    </p>
+</div>
+</section>
+<main class="flex-1">
+<!-- Company Story -->
+<section class="py-20 px-6 md:px-20 max-w-7xl mx-auto">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="order-2 md:order-1">
+<h2 class="text-primary text-sm font-bold tracking-widest uppercase mb-4">Hikayemiz</h2>
+<h3 class="text-3xl md:text-4xl font-extrabold mb-6 leading-tight">Köklerimizden Gelen Güvenle Yarını İnşa Ediyoruz</h3>
+<div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-lg"><p>
+                                    Doruk İnşaat'ın temelleri, 1987 yılında Yıldız Teknik Üniversitesi mezunu İnşaat Mühendisi Yaşar Gökhanoğlu tarafından kurulan Gökhanoğlu İnşaat ile atılmıştır. Sektördeki dürüst ve disiplinli çalışma prensibiyle tanınan Yaşar Gökhanoğlu'nun mirası, şirketin oğulları arasında devredilmesiyle yeni bir döneme girmiştir.
+                                </p>
+<p>
+                                    Kadir Gökhanoğlu yoluna Gökhanoğlu İnşaat ile devam ederken, Ünal Gökhanoğlu bayrağı devralarak Doruk İnşaat'ı kurmuştur. Bugün <strong>Doruk İnşaat Avcılar</strong> merkezli olarak, İstanbul'un gelişimine yön veren projelerde aktif rol oynamaktadır.
+                                </p>
+<p>
+                                    Özellikle <strong>Avcılar Kentsel Dönüşüm</strong> projelerinde ve modern konut üretiminde uzmanlaşan ekibimiz, köklü geçmişimizden aldığı güçle depreme dayanıklı, estetik ve sürdürülebilir yaşam alanları inşa etmeye devam etmektedir.
+                                </p></div>
+<div class="mt-8 grid grid-cols-2 gap-6 border-t border-slate-200 dark:border-slate-800 pt-8">
+<div>
+<span class="block text-3xl font-black text-primary">35+</span>
+<span class="text-sm font-medium uppercase tracking-wider text-slate-500">Yıllık Tecrübe</span>
+</div>
+<div>
+<span class="block text-3xl font-black text-primary">500+</span>
+<span class="text-sm font-medium uppercase tracking-wider text-slate-500">Tamamlanan Proje</span>
+</div>
+</div>
+</div>
+<div class="order-1 md:order-2 relative">
+<div class="absolute -top-4 -left-4 w-full h-full bg-primary rounded-xl -z-10 opacity-20"></div>
+<img alt="Doruk İnşaat Team" class="rounded-xl shadow-2xl w-full object-cover h-[500px]" data-alt="Professional corporate team in a modern office meeting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz07cpBBvV9dtIQc7hz0J36LoL_7i4WNHGLDsdlpkdW5Uqef0AeqpJbyRM1CDE5mPQ9i-neuFfrXQROTy13iLFAn9KWk9Jq2bVFpZlE4LlNsm_nOCA-rzUnMGTsObvZ5RvdJa7ttjZyZbG1mnf_nx8jvNueYkqJwyQsnECABIuG2p4VF1YUqPtv9-_baHO2brv6XHRVM19gX8tQGw1Cbga_6cDF2Vcz93cQZVlmn8FO3t7eI1eJ74GrcTrGtxiawn_-os997P7qA8"/>
+</div>
+</div>
+</section>
+<!-- Mission & Vision -->
+<section class="bg-slate-100 dark:bg-background-dark/50 py-20 px-6 md:px-20">
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
+<div class="bg-white dark:bg-slate-800 p-10 rounded-2xl shadow-xl border-t-4 border-primary">
+<div class="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">flag</span>
+</div>
+<h4 class="text-2xl font-bold mb-4">Misyonumuz</h4>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                İleri teknoloji ve modern mühendislik çözümlerini kullanarak, toplum için güvenli, konforlu ve estetik yaşam alanları üretmek; çalışanlarımıza ve paydaşlarımıza değer katarak sektördeki öncü konumumuzu korumaktır.
+                            </p>
+</div>
+<div class="bg-white dark:bg-slate-800 p-10 rounded-2xl shadow-xl border-t-4 border-slate-900 dark:border-slate-500">
+<div class="bg-slate-100 dark:bg-slate-700 w-14 h-14 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300 text-3xl">visibility</span>
+</div>
+<h4 class="text-2xl font-bold mb-4">Vizyonumuz</h4>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Sürdürülebilir mimari ve inovatif yapım tekniklerinde küresel standartları belirleyen, Türkiye'nin en güvenilir ve ilham veren inşaat markası olarak geleceği inşa etmek.
+                            </p>
+</div>
+</div>
+</section>
+<!-- Corporate Values -->
+<section class="py-20 px-6 md:px-20 max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-primary text-sm font-bold tracking-widest uppercase mb-4">Değerlerimiz</h2>
+<h3 class="text-3xl md:text-4xl font-extrabold">Bizi Biz Yapan İlkelerimiz</h3>
+</div>
+<div class="grid md:grid-cols-3 gap-12">
+<div class="text-center group">
+<div class="w-20 h-20 bg-background-light dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform group-hover:scale-110 shadow-lg border border-primary/20">
+<span class="material-symbols-outlined text-primary text-4xl">verified_user</span>
+</div>
+<h5 class="text-xl font-bold mb-3 uppercase tracking-tight">Güven</h5>
+<p class="text-slate-600 dark:text-slate-400">Verdiğimiz her sözün arkasındayız. Şeffaflık ve dürüstlük iş yapış biçimimizin temelidir.</p>
+</div>
+<div class="text-center group">
+<div class="w-20 h-20 bg-background-light dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform group-hover:scale-110 shadow-lg border border-primary/20">
+<span class="material-symbols-outlined text-primary text-4xl">architecture</span>
+</div>
+<h5 class="text-xl font-bold mb-3 uppercase tracking-tight">Kalite</h5>
+<p class="text-slate-600 dark:text-slate-400">Malzeme seçiminden işçiliğe kadar her aşamada en yüksek standartları hedefliyoruz.</p>
+</div>
+<div class="text-center group">
+<div class="w-20 h-20 bg-background-light dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform group-hover:scale-110 shadow-lg border border-primary/20">
+<span class="material-symbols-outlined text-primary text-4xl">eco</span>
+</div>
+<h5 class="text-xl font-bold mb-3 uppercase tracking-tight">Sürdürülebilirlik</h5>
+<p class="text-slate-600 dark:text-slate-400">Doğaya saygılı projelerle gelecek nesillere daha yaşanabilir bir dünya bırakıyoruz.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Section -->
+<!-- Footer Section -->
+<footer class="bg-[#1c170d] pt-24 pb-12 px-6 text-white border-t border-white/10">
+
+<div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-16">
+
+<!-- Logo + açıklama -->
+<div class="space-y-6">
+
+<div class="flex items-center gap-3">
+
+<div class="text-primary">
+<svg class="h-9 w-9" fill="none" viewBox="0 0 48 48">
+<path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648Z" fill="currentColor"/>
+</svg>
+</div>
+
+<span class="text-2xl font-black uppercase tracking-tight">
+Doruk İnşaat Avcılar
+</span>
+
+</div>
+
+<p class="text-slate-400 leading-relaxed">
+
+1987 yılından beri Avcılar merkezli faaliyet gösteren Doruk İnşaat,
+kentsel dönüşüm ve modern konut projelerinde güvenilir yaşam alanları
+inşa etmektedir.
+
+</p>
+
+</div>
+
+
+<!-- Menü -->
+<div class="space-y-6">
+
+<h4 class="text-xl font-bold border-l-4 border-primary pl-3">
+Kurumsal
+</h4>
+
+<ul class="space-y-3 text-slate-400">
+
+<li>
+<a href="index.html" class="hover:text-primary transition-colors">
+Ana Sayfa
+</a>
+</li>
+
+<li>
+<a href="hakkimizda.html" class="hover:text-primary transition-colors">
+Hakkımızda
+</a>
+</li>
+
+<li>
+<a href="projeler.html" class="hover:text-primary transition-colors">
+Projeler
+</a>
+</li>
+
+<li>
+<a href="teklifal.html" class="hover:text-primary transition-colors">
+Teklif Al
+</a>
+</li>
+
+<li>
+<a href="iletisim.html" class="hover:text-primary transition-colors">
+İletişim
+</a>
+</li>
+
+</ul>
+
+</div>
+
+
+<!-- Hizmetler -->
+<div class="space-y-6">
+
+<h4 class="text-xl font-bold border-l-4 border-primary pl-3">
+Hizmetlerimiz
+</h4>
+
+<ul class="space-y-3 text-slate-400">
+
+<li>Kentsel Dönüşüm</li>
+<li>Konut Projeleri</li>
+<li>Ticari Yapılar</li>
+<li>Gayrimenkul Geliştirme</li>
+
+</ul>
+
+</div>
+
+
+<!-- İletişim -->
+<div class="space-y-6">
+
+<h4 class="text-xl font-bold border-l-4 border-primary pl-3">
+İletişim
+</h4>
+
+<ul class="space-y-4 text-slate-400">
+
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>Avcılar / İstanbul</span>
+</li>
+
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">phone</span>
+<span>+90 5XX XXX XX XX</span>
+</li>
+
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span>info@dorukinsaatavcilar.com</span>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+<!-- Alt footer -->
+
+<div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+
+<p>
+© 2024 Doruk İnşaat Avcılar — Tüm Hakları Saklıdır
+</p>
+
+<div class="flex gap-6 mt-4 md:mt-0">
+
+<a href="#" class="hover:text-white transition-colors">
+KVKK
+</a>
+
+<a href="#" class="hover:text-white transition-colors">
+Gizlilik Politikası
+</a>
+
+</div>
+
+</div>
+
+</footer>
+</div>
+</div>
+</body></html>

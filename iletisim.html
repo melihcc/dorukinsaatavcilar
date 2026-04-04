@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2a60d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221c10",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<!-- Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-charcoal/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+
+<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+
+<div class="flex items-center gap-2">
+<div class="text-primary">
+
+<svg class="h-8 w-8" fill="none" viewBox="0 0 48 48">
+<path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648Z" fill="currentColor"></path>
+</svg>
+
+</div>
+
+<h1 class="text-2xl font-black tracking-tight text-charcoal dark:text-white uppercase">
+Doruk İnşaat Avcılar
+</h1>
+
+</div>
+
+<nav class="hidden md:flex items-center gap-8">
+
+<a class="text-sm font-semibold hover:text-primary transition-colors"
+href="index.html">
+Ana Sayfa
+</a>
+
+<a class="text-sm font-semibold hover:text-primary transition-colors"
+href="hakkimizda.html">
+Hakkımızda
+</a>
+
+<a class="text-sm font-semibold hover:text-primary transition-colors"
+href="projeler.html">
+Projeler
+</a>
+
+<a class="text-sm font-semibold hover:text-primary transition-colors"
+href="iletisim.html">
+İletişim
+</a>
+
+</nav>
+
+<a href="teklifal.html">
+
+<button class="bg-primary hover:bg-primary/90 text-charcoal font-bold py-2 px-6 rounded-lg text-sm transition-all shadow-lg shadow-primary/20">
+Teklif Al
+</button>
+
+</a>
+
+</div>
+
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+<!-- Page Header -->
+<div class="mb-16">
+<h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-4">İletişim</h1>
+<div class="h-1.5 w-24 bg-primary rounded-full"></div>
+<p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-2xl">
+                Projeleriniz hakkında detaylı bilgi almak veya bizimle çalışmak için formu doldurabilir ya da iletişim kanallarımızdan bize ulaşabilirsiniz.
+            </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+<!-- Left: Contact Form -->
+<section class="bg-white dark:bg-background-dark/50 p-8 md:p-10 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800">
+<h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">mail</span>
+                    Mesaj Gönderin
+                </h2>
+<form action="#" class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold uppercase tracking-wider text-slate-500">Ad Soyad</label>
+<input class="bg-background-light dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary p-4 transition-all" placeholder="John Doe" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold uppercase tracking-wider text-slate-500">E-posta</label>
+<input class="bg-background-light dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary p-4 transition-all" placeholder="email@example.com" type="email"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold uppercase tracking-wider text-slate-500">Telefon</label>
+<input class="bg-background-light dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary p-4 transition-all" placeholder="+90 (___) ___ __ __" type="tel"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-bold uppercase tracking-wider text-slate-500">Mesajınız</label>
+<textarea class="bg-background-light dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary p-4 transition-all" placeholder="Size nasıl yardımcı olabiliriz?" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-slate-900 font-bold py-4 rounded-lg hover:scale-[1.01] transition-transform flex items-center justify-center gap-2" type="submit">
+                        Gönder
+                        <span class="material-symbols-outlined">send</span>
+</button>
+</form>
+</section>
+<!-- Right: Contact Details -->
+<section class="space-y-12">
+<div>
+<h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">contact_support</span>
+                        İletişim Bilgileri
+                    </h2>
+<div class="space-y-8">
+<div class="flex gap-6 group">
+<div class="size-14 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary shrink-0 transition-colors group-hover:bg-primary group-hover:text-slate-900">
+<span class="material-symbols-outlined text-3xl">call</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Telefon</h3>
+<p class="text-xl font-bold">+90 216 123 45 67</p>
+<p class="text-slate-500">Pazartesi - Cuma, 09:00 - 18:00</p>
+</div>
+</div>
+<div class="flex gap-6 group">
+<div class="size-14 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary shrink-0 transition-colors group-hover:bg-primary group-hover:text-slate-900">
+<span class="material-symbols-outlined text-3xl">alternate_email</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">E-posta</h3>
+<p class="text-xl font-bold">info@dorukinsaat.com.tr</p>
+<p class="text-slate-500">Genel Sorular ve İş Ortaklıkları</p>
+</div>
+</div>
+<div class="flex gap-6 group">
+<div class="size-14 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary shrink-0 transition-colors group-hover:bg-primary group-hover:text-slate-900">
+<span class="material-symbols-outlined text-3xl">location_on</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Merkez Ofis | İstanbul İnşaat Firması</h3>
+<p class="text-xl font-bold leading-snug">Cihangir Mah. E-5 Karayolu Üzeri, No:182, <br/>Avcılar, İstanbul</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Social Media -->
+<div class="pt-8 border-t border-slate-200 dark:border-slate-800">
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Sosyal Medya</h3>
+<div class="flex gap-4">
+<a class="size-12 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-primary hover:border-primary transition-all group" href="#">
+<svg class="size-6 fill-slate-600 dark:fill-slate-400 group-hover:fill-slate-900" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+</a>
+<a class="size-12 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-primary hover:border-primary transition-all group" href="#">
+<svg class="size-6 fill-slate-600 dark:fill-slate-400 group-hover:fill-slate-900" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+<a class="size-12 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-primary hover:border-primary transition-all group" href="#">
+<svg class="size-6 fill-slate-600 dark:fill-slate-400 group-hover:fill-slate-900" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+</a>
+</div>
+</div>
+</section>
+</div>
+<!-- Integrated Map Visual -->
+<section class="mt-20">
+<div class="relative w-full h-[450px] rounded-xl overflow-hidden shadow-xl border-4 border-white dark:border-slate-800">
+<div class="absolute inset-0 bg-slate-200 animate-pulse"></div>
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Modern stylized architectural map of Istanbul" data-location="Istanbul" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEDaNHZszU4jwxJhe8PltUxBoBZfrY3KNocELL-mFgNNZOZjdjh93ayAVe-VnoqrHKWjpmFwQs-uivfWlEJV1NpqpcTg_ZF4m2H0xu43hpooXb5ojVTmN6m1adxIuTbEcFuX2zgRB1tn9dvSDeiDbBx0flGygs76CHd5ROw1u7hnanuvW_WQi50hRelFBqnQhPSlknaPayk07gLp2VL-1gfv2aKV99JWDSQvME51N64XBvrkjCUzaYsBcU_HxKLC9xsbmRZhMmRjg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent flex items-end p-8">
+<div class="bg-white/95 dark:bg-background-dark/95 p-6 rounded-lg backdrop-blur-sm flex items-center gap-4 border border-primary/20">
+<span class="material-symbols-outlined text-primary text-4xl">pin_drop</span>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Doruk İnşaat Avcılar</p>
+<p class="text-sm text-slate-500">Cihangir Mah. E-5 Karayolu Üzeri, No:182, Avcılar, İstanbul</p>
+<a class="text-xs font-bold text-primary uppercase tracking-widest mt-2 block hover:underline" href="#">Yol Tarifi Al</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#1c170d] pt-24 pb-12 px-6 text-white border-t border-white/10">
+
+<div class="mx-auto max-w-7xl grid md:grid-cols-4 gap-12 mb-16">
+
+<!-- Firma -->
+<div class="space-y-6">
+
+<div class="flex items-center gap-2">
+
+<div class="text-primary">
+
+<svg class="h-8 w-8" fill="none" viewBox="0 0 48 48">
+<path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648Z" fill="currentColor"/>
+</svg>
+
+</div>
+
+<span class="text-2xl font-black uppercase tracking-tighter">
+Doruk İnşaat Avcılar
+</span>
+
+</div>
+
+<p class="text-slate-400 leading-relaxed">
+
+1987 yılından beri Avcılar merkezli faaliyet gösteren Doruk İnşaat,
+kentsel dönüşüm ve modern konut projeleri ile güvenilir yaşam alanları
+inşa etmektedir.
+
+</p>
+
+</div>
+
+
+<!-- Menü -->
+<div class="space-y-6">
+
+<h4 class="text-xl font-bold border-l-4 border-primary pl-3">
+Kurumsal
+</h4>
+
+<ul class="space-y-3 text-slate-400">
+
+<li>
+<a href="index.html" class="hover:text-primary transition-colors">
+Ana Sayfa
+</a>
+</li>
+
+<li>
+<a href="hakkimizda.html" class="hover:text-primary transition-colors">
+Hakkımızda
+</a>
+</li>
+
+<li>
+<a href="projeler.html" class="hover:text-primary transition-colors">
+Projelerimiz
+</a>
+</li>
+
+<li>
+<a href="teklifal.html" class="hover:text-primary transition-colors">
+Teklif Al
+</a>
+</li>
+
+<li>
+<a href="iletisim.html" class="hover:text-primary transition-colors">
+İletişim
+</a>
+</li>
+
+</ul>
+
+</div>
+
+
+<!-- Hizmetler -->
+<div class="space-y-6">
+
+<h4 class="text-xl font-bold border-l-4 border-primary pl-3">
+Hizmetlerimiz
+</h4>
+
+<ul class="space-y-3 text-slate-400">
+
+<li>Kentsel Dönüşüm</li>
+
+<li>Konut Projeleri</li>
+
+<li>Ticari Yapılar</li>
+
+<li>Gayrimenkul Geliştirme</li>
+
+</ul>
+
+</div>
+
+
+<!-- İletişim -->
+<div class="space-y-6">
+
+<h4 class="text-xl font-bold border-l-4 border-primary pl-3">
+İletişim
+</h4>
+
+<ul class="space-y-4 text-slate-400">
+
+<li class="flex items-start gap-3">
+
+<span class="material-symbols-outlined text-primary">
+location_on
+</span>
+
+<span>
+Avcılar, İstanbul
+</span>
+
+</li>
+
+<li class="flex items-center gap-3">
+
+<span class="material-symbols-outlined text-primary">
+phone
+</span>
+
+<span>
++90 5XX XXX XX XX
+</span>
+
+</li>
+
+<li class="flex items-center gap-3">
+
+<span class="material-symbols-outlined text-primary">
+mail
+</span>
+
+<span>
+info@dorukinsaatavcilar.com
+</span>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+<!-- Alt Footer -->
+
+<div class="mx-auto max-w-7xl pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+
+<p>
+© 2024 Doruk İnşaat Avcılar – Tüm Hakları Saklıdır
+</p>
+
+<div class="flex gap-6">
+
+<a href="#" class="hover:text-white transition-colors">
+KVKK
+</a>
+
+<a href="#" class="hover:text-white transition-colors">
+Gizlilik Politikası
+</a>
+
+</div>
+
+</div>
+
+</footer>
+</body></html>
