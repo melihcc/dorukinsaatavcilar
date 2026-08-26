@@ -73,6 +73,23 @@ function applyDetailMeta(p) {
     set('meta[property="og:image"]', "content", p.cover);
     set('meta[name="twitter:image"]', "content", p.cover);
   }
+
+  // Arama sonuçlarında "Ana Sayfa › Projeler › Proje Adı" yolunu gösterir
+  const eskiIz = document.getElementById("proje-izyolu");
+  if (eskiIz) eskiIz.remove();
+  const iz = document.createElement("script");
+  iz.type = "application/ld+json";
+  iz.id = "proje-izyolu";
+  iz.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: SITE_ORIGIN + "/" },
+      { "@type": "ListItem", position: 2, name: "Projeler", item: SITE_ORIGIN + "/projeler.html" },
+      { "@type": "ListItem", position: 3, name: p.title, item: url }
+    ]
+  });
+  document.head.appendChild(iz);
 }
 
 function paragraphs(text, cls) {

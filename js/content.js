@@ -17,6 +17,7 @@ import { collectFields, applyField, pageId } from "./cms-keys.js";
 /* ------------------------------------------------------------------ */
 
 const URL_KEYS = new Set(["mapsUrl"]);
+const GECERLI_EPOSTA = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 /** Değeri boşken tamamen gizlenmesi gereken kutuyu bulur.
  *  `data-site-item` (ör. telefon satırı) veya `data-social-item` işaretli
@@ -60,12 +61,25 @@ export function applySettings(s) {
 
     if (URL_KEYS.has(key)) { el.setAttribute("href", value); return; }
 
+    // Panelde bozuk kaydedilmiş bir değer, şablondaki doğru yedeği ezmemeli:
+    // "dorukemlakgayrimenkul" gibi yarım bir adres tıklanamaz bir bağlantı üretir.
+    if (key === "email" && !GECERLI_EPOSTA.test(String(value).trim())) {
+      console.warn("[içerik] Paneldeki e-posta geçersiz, şablondaki adres korundu:", value);
+      return;
+    }
+    if (key === "phone" && String(value).replace(/\D/g, "").length < 10) {
+      console.warn("[içerik] Paneldeki telefon eksik görünüyor, şablondaki değer korundu:", value);
+      return;
+    }
+
     if (el.tagName === "A") {
       if (key === "phone") el.setAttribute("href", "tel:" + String(value).replace(/[^\d+]/g, ""));
-      else if (key === "email") el.setAttribute("href", "mailto:" + value);
+      else if (key === "email") el.setAttribute("href", "mailto:" + String(value).trim());
     }
     el.textContent = value;
   });
+
+  yapisalVeriyiEsitle(s);
 
   // Hiçbir sosyal hesap girilmemişse başlığıyla birlikte bölümün tamamı gizlenir;
   // aksi hâlde ortada boş bir "Sosyal Medya" başlığı kalırdı.
@@ -77,7 +91,55 @@ export function applySettings(s) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 2) Sayfa metin ve görselleri                                        */
+/* 2) Yapısal veri (schema.org) — panel bilgileriyle eşitleme          */
+/* ------------------------------------------------------------------ */
+
+/** Telefonu E.164 biçimine yaklaştırır: 0212... -> +90212... */
+function telE164(v) {
+  const d = String(v || "").replace(/[^\d+]/g, "");
+  if (!d) return "";
+  if (d.startsWith("+")) return d;
+  if (d.startsWith("0")) return "+90" + d.slice(1);
+  if (d.startsWith("90")) return "+" + d;
+  return "+90" + d;
+}
+
+/**
+ * Sayfadaki JSON-LD bloğunu paneldeki güncel iletişim bilgileriyle günceller.
+ * Böylece firma bilgisi değiştiğinde HTML'e elle dokunmak gerekmez.
+ * Geçersiz/eksik değerler yazılmaz — hatalı yapısal veri hiç olmamasından kötüdür.
+ */
+function yapisalVeriyiEsitle(s) {
+  const not = document.querySelector('script[type="application/ld+json"][data-schema="kurulus"]');
+  if (!not || !s) return;
+  let veri;
+  try { veri = JSON.parse(not.textContent); } catch (e) { return; }
+
+  const liste = Array.isArray(veri) ? veri : [veri];
+  const kurulus = liste.find((x) => x["@type"] === "GeneralContractor");
+  if (!kurulus) return;
+
+  const tel = telE164(s.phone);
+  if (tel.length >= 12) kurulus.telephone = tel;
+
+  // E-posta yalnızca gerçekten geçerliyse yazılır
+  if (GECERLI_EPOSTA.test(String(s.email || "").trim())) {
+    kurulus.email = s.email.trim();
+  }
+
+  if (s.address && String(s.address).trim().length > 10) {
+    kurulus.address = { ...kurulus.address, streetAddress: String(s.address).trim() };
+  }
+
+  const sosyal = Object.values(s.social || {}).filter((u) => /^https?:\/\//i.test(String(u || "")));
+  if (sosyal.length) kurulus.sameAs = sosyal;
+  if (s.mapsUrl) kurulus.hasMap = s.mapsUrl;
+
+  not.textContent = JSON.stringify(liste.length === 1 ? liste[0] : liste, null, 2);
+}
+
+/* ------------------------------------------------------------------ */
+/* 3) Sayfa metin ve görselleri                                        */
 /* ------------------------------------------------------------------ */
 
 function applyContent(fieldsMap) {

@@ -99,6 +99,76 @@
 <meta content="İletişim | Doruk İnşaat Avcılar" name="twitter:title"/>
 <meta content="Doruk İnşaat Avcılar ile iletişime geçin: merkez ofis adresi, telefon, e-posta ve mesaj formu. Projeleriniz için bize ulaşın." name="twitter:description"/>
 <meta content="https://dorukinsaatavcilar.com/assets/logo.png" name="twitter:image"/>
+<!-- ═══ Yapısal veri (schema.org) — Google'ın firmayı tanıması için ═══
+     Telefon, e-posta, adres ve sosyal hesaplar sayfa açılırken
+     js/content.js tarafından paneldeki güncel değerlerle eşitlenir. -->
+<script type="application/ld+json" data-schema="kurulus">
+{
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "@id": "https://dorukinsaatavcilar.com/#kurulus",
+  "name": "Doruk İnşaat Gayrimenkul",
+  "alternateName": "Doruk İnşaat Avcılar",
+  "url": "https://dorukinsaatavcilar.com/",
+  "logo": "https://dorukinsaatavcilar.com/assets/logo.png",
+  "image": "https://dorukinsaatavcilar.com/assets/logo.png",
+  "description": "1987'den beri İstanbul Avcılar'da faaliyet gösteren inşaat ve gayrimenkul firması. Kentsel dönüşüm, modern konut projeleri ve ticari yapılar.",
+  "foundingDate": "1987",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Üniversite Mah. Karataş Sokağı No:31",
+    "addressLocality": "Avcılar",
+    "addressRegion": "İstanbul",
+    "postalCode": "34320",
+    "addressCountry": "TR"
+  },
+  "telephone": "+902126201353",
+  "email": "dorukemlakgayrimenkul@gmail.com",
+  "areaServed": [
+    {
+      "@type": "AdministrativeArea",
+      "name": "Avcılar, İstanbul"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "İstanbul"
+    }
+  ],
+  "knowsAbout": [
+    "Kentsel dönüşüm",
+    "Konut projeleri",
+    "Ticari yapılar",
+    "Gayrimenkul geliştirme"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Hizmetlerimiz",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Avcılar Kentsel Dönüşüm"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Modern Konut Projeleri"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Ticari Yapılar"
+        }
+      }
+    ]
+  }
+}
+</script>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
 <!-- ═══════════ ORTAK HEADER — tüm sayfalarda birebir aynı ═══════════ -->

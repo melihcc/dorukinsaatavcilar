@@ -255,7 +255,31 @@ async function loadSettings() {
   }
 }
 
+/* Kaydetmeden önce basit doğrulama.
+   Panelde tek harfi eksik kaydedilen bir e-posta sitedeki tüm iletişim
+   bağlantılarını sessizce bozar; bunu kaynağında engelliyoruz. */
+function ayarlariDogrula() {
+  const eposta = $("s_email").value.trim();
+  if (eposta && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(eposta)) {
+    return `E-posta adresi eksik veya hatalı görünüyor: "${eposta}". Örnek: ornek@firma.com`;
+  }
+  const telefon = $("s_phone").value.trim();
+  if (telefon && telefon.replace(/\D/g, "").length < 10) {
+    return `Telefon numarası eksik görünüyor: "${telefon}". Alan koduyla birlikte yazın.`;
+  }
+  for (const k of SOCIAL_KEYS) {
+    const v = $("s_" + k).value.trim();
+    if (v && !/^https?:\/\//i.test(v)) {
+      return `Sosyal medya adresleri "https://" ile başlamalı. Hatalı alan: ${k}`;
+    }
+  }
+  return null;
+}
+
 $("saveSettings").onclick = async () => {
+  const hata = ayarlariDogrula();
+  if (hata) { flash($("settingsStatus"), hata, false); return; }
+
   const data = { social: {}, updatedAt: serverTimestamp() };
   SETTING_KEYS.forEach((k) => { data[k] = $("s_" + k).value.trim(); });
   SOCIAL_KEYS.forEach((k) => { data.social[k] = $("s_" + k).value.trim(); });
