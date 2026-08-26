@@ -1,26 +1,67 @@
 <!DOCTYPE html>
 
-<html class="light" lang="tr"><head>
+<html class="scroll-smooth" lang="tr"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>Doruk İnşaat Avcılar | Kentsel Dönüşüm ve Modern Konut Projeleri</title>
-<meta content="Doruk İnşaat, 1987’den beri İstanbul Avcılar’da faaliyet gösteren köklü bir inşaat ve gayrimenkul firmasıdır. Kentsel dönüşüm projeleri ve modern konut yapılarıyla güvenilir hizmet sunmaktadır." name="description"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script>
+    /* Tema tercihini ilk boyamadan önce uygular — sayfa açılırken renk sıçraması olmaz. */
+    (function () {
+      try {
+        var t = localStorage.getItem("doruk-tema");
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.classList.add(t);
+      } catch (e) { document.documentElement.classList.add("light"); }
+    })();
+  </script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
+        /* ═══ Doruk İnşaat — ortak tema. Tüm sayfalarda birebir aynıdır. ═══ */
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#f2a60d",
+                        /* Marka */
+                        "primary": "#ed1c24",
+                        "brand-red": "#ed1c24",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#ed1c24",
+                        "on-primary-container": "#ffffff",
                         "background-light": "#f8f7f5",
                         "background-dark": "#221c10",
                         "charcoal": "#1c170d",
+                        /* Proje detay sayfasının kullandığı yüzey tonları */
+                        "background": "#f8f7f5",
+                        "on-background": "#1c170d",
+                        "surface": "#ffffff",
+                        "on-surface": "#1c170d",
+                        "on-surface-variant": "#524533",
+                        "surface-variant": "#eee0d1",
+                        "surface-bright": "#ffffff",
+                        "surface-dim": "#e6d8c9",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f8f7f5",
+                        "surface-container": "#faecdc",
+                        "surface-container-high": "#f4e6d7",
+                        "surface-container-highest": "#eee0d1",
+                        "inverse-surface": "#372f25",
+                        "inverse-on-surface": "#fdeedf",
+                        "outline": "#847561",
+                        "outline-variant": "#d6c4ad",
+                        "secondary": "#795825",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#1c170d",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff"
                     },
                     fontFamily: {
-                        "display": ["Public Sans", "sans-serif"]
+                        "display":  ["Public Sans", "sans-serif"],
+                        "body":     ["Public Sans", "sans-serif"],
+                        "headline": ["Public Sans", "sans-serif"],
+                        "label":    ["Public Sans", "sans-serif"]
                     },
                     borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
                 },
@@ -30,85 +71,93 @@
 <style>
         body { font-family: 'Public Sans', sans-serif; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        /* Yumuşak kaydırma, hareket hassasiyeti bildiren kullanıcılarda kapanır. */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        }
     </style>
+<!-- ═══ Sayfa kimliği (ortak yapı — tüm sayfalarda aynı sırada) ═══ -->
+<title>Doruk İnşaat Avcılar | Kentsel Dönüşüm ve Modern Konut Projeleri</title>
+<meta content="Doruk İnşaat, 1987’den beri İstanbul Avcılar’da faaliyet gösteren köklü bir inşaat ve gayrimenkul firmasıdır. Kentsel dönüşüm projeleri ve modern konut yapılarıyla güvenilir hizmet sunmaktadır." name="description"/>
+<link href="https://dorukinsaatavcilar.com/" rel="canonical"/>
+<!-- ═══ Marka ikonları (ortak) ═══ -->
+<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="assets/favicon-32.png" rel="alternate icon" sizes="32x32" type="image/png"/>
+<link href="assets/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<meta content="#ed1c24" name="theme-color"/>
+<!-- ═══ Sosyal medya paylaşım kartı ═══ -->
+<meta content="website" property="og:type"/>
+<meta content="tr_TR" property="og:locale"/>
+<meta content="Doruk İnşaat Gayrimenkul" property="og:site_name"/>
+<meta content="https://dorukinsaatavcilar.com/" property="og:url"/>
+<meta content="Doruk İnşaat Avcılar | Kentsel Dönüşüm ve Modern Konut Projeleri" property="og:title"/>
+<meta content="Doruk İnşaat, 1987’den beri İstanbul Avcılar’da faaliyet gösteren köklü bir inşaat ve gayrimenkul firmasıdır. Kentsel dönüşüm projeleri ve modern konut yapılarıyla güvenilir hizmet sunmaktadır." property="og:description"/>
+<meta content="https://dorukinsaatavcilar.com/assets/logo.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Doruk İnşaat Avcılar | Kentsel Dönüşüm ve Modern Konut Projeleri" name="twitter:title"/>
+<meta content="Doruk İnşaat, 1987’den beri İstanbul Avcılar’da faaliyet gösteren köklü bir inşaat ve gayrimenkul firmasıdır. Kentsel dönüşüm projeleri ve modern konut yapılarıyla güvenilir hizmet sunmaktadır." name="twitter:description"/>
+<meta content="https://dorukinsaatavcilar.com/assets/logo.png" name="twitter:image"/>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-charcoal dark:text-slate-100">
-<!-- Top Navigation Bar -->
-<header class="sticky top-0 z-50 w-full border-b border-charcoal/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
-
-<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-
-<div class="flex items-center gap-2">
-<div class="text-primary">
-
-<svg class="h-8 w-8" fill="none" viewBox="0 0 48 48">
-<path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648Z" fill="currentColor"></path>
-</svg>
-
-</div>
-
-<h1 class="text-2xl font-black tracking-tight text-charcoal dark:text-white uppercase">
-Doruk İnşaat Avcılar
-</h1>
-
-</div>
-
-<nav class="hidden md:flex items-center gap-8">
-
-<a class="text-sm font-semibold hover:text-primary transition-colors"
-href="index.html">
-Ana Sayfa
+<!-- ═══════════ ORTAK HEADER — tüm sayfalarda birebir aynı ═══════════ -->
+<header class="sticky top-0 z-50 w-full border-b border-charcoal/10 bg-white/90 backdrop-blur-md dark:border-white/10 dark:bg-background-dark/90">
+<div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
+<!-- Logo -->
+<a aria-label="Doruk İnşaat Gayrimenkul — Ana Sayfa" class="flex shrink-0 items-center" href="index.html">
+<img alt="Doruk İnşaat Gayrimenkul" class="h-9 w-auto md:h-11 dark:hidden" src="assets/logo.svg"/>
+<img alt="Doruk İnşaat Gayrimenkul" class="hidden h-9 w-auto md:h-11 dark:block" src="assets/logo-white.svg"/>
 </a>
-
-<a class="text-sm font-semibold hover:text-primary transition-colors"
-href="hakkimizda.html">
-Hakkımızda
-</a>
-
-<a class="text-sm font-semibold hover:text-primary transition-colors"
-href="projeler.html">
-Projeler
-</a>
-
-<a class="text-sm font-semibold hover:text-primary transition-colors"
-href="iletisim.html">
-İletişim
-</a>
-
+<!-- Masaüstü menü -->
+<nav aria-label="Ana menü" class="hidden items-center gap-8 md:flex">
+<a class="text-sm font-semibold text-primary" aria-current="page" href="index.html">Ana Sayfa</a>
+<a class="text-sm font-semibold text-charcoal/80 transition-colors hover:text-primary dark:text-slate-200" href="hakkimizda.html">Hakkımızda</a>
+<a class="text-sm font-semibold text-charcoal/80 transition-colors hover:text-primary dark:text-slate-200" href="projeler.html">Projeler</a>
+<a class="text-sm font-semibold text-charcoal/80 transition-colors hover:text-primary dark:text-slate-200" href="iletisim.html">İletişim</a>
 </nav>
-
-<a href="teklifal.html">
-
-<button class="bg-primary hover:bg-primary/90 text-charcoal font-bold py-2 px-6 rounded-lg text-sm transition-all shadow-lg shadow-primary/20">
-Teklif Al
+<div class="flex items-center gap-3">
+<!-- Tema değiştirme -->
+<button aria-label="Karanlık veya aydınlık temaya geç" class="flex h-11 w-11 items-center justify-center rounded-[0.5rem] border border-charcoal/15 text-charcoal transition-colors hover:border-primary hover:text-primary dark:border-white/20 dark:text-white" data-theme-toggle="" title="Temayı değiştir" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-[20px] dark:hidden">dark_mode</span>
+<span aria-hidden="true" class="material-symbols-outlined hidden text-[20px] dark:block">light_mode</span>
 </button>
-
+<a class="hidden shrink-0 md:block" href="teklifal.html">
+<span class="inline-block rounded-[0.5rem] bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary/25 transition-colors hover:bg-primary/90">Teklif Al</span>
 </a>
-
+<!-- Mobil menü butonu -->
+<button aria-controls="mobil-menu" aria-expanded="false" class="flex h-11 w-11 items-center justify-center rounded-[0.5rem] border border-charcoal/15 text-charcoal transition-colors hover:border-primary hover:text-primary dark:border-white/20 dark:text-white md:hidden" data-menu-toggle="" type="button">
+<span class="sr-only">Menüyü aç veya kapat</span>
+<span aria-hidden="true" class="material-symbols-outlined" data-menu-icon="">menu</span>
+</button>
 </div>
-
+</div>
+<!-- Mobil menü paneli -->
+<div class="hidden border-t border-charcoal/10 bg-white px-4 py-4 dark:border-white/10 dark:bg-background-dark md:hidden" id="mobil-menu">
+<nav aria-label="Mobil menü" class="flex flex-col gap-1">
+<a class="flex items-center justify-between rounded-[0.5rem] bg-primary/10 px-4 py-3 text-base font-bold text-primary" aria-current="page" href="index.html">Ana Sayfa<span aria-hidden="true" class="material-symbols-outlined text-lg opacity-50">chevron_right</span></a>
+<a class="flex items-center justify-between rounded-[0.5rem] px-4 py-3 text-base font-semibold text-charcoal transition-colors hover:bg-primary/10 hover:text-primary dark:text-slate-100" href="hakkimizda.html">Hakkımızda<span aria-hidden="true" class="material-symbols-outlined text-lg opacity-50">chevron_right</span></a>
+<a class="flex items-center justify-between rounded-[0.5rem] px-4 py-3 text-base font-semibold text-charcoal transition-colors hover:bg-primary/10 hover:text-primary dark:text-slate-100" href="projeler.html">Projeler<span aria-hidden="true" class="material-symbols-outlined text-lg opacity-50">chevron_right</span></a>
+<a class="flex items-center justify-between rounded-[0.5rem] px-4 py-3 text-base font-semibold text-charcoal transition-colors hover:bg-primary/10 hover:text-primary dark:text-slate-100" href="iletisim.html">İletişim<span aria-hidden="true" class="material-symbols-outlined text-lg opacity-50">chevron_right</span></a>
+<a class="mt-3 rounded-[0.5rem] bg-primary px-4 py-3 text-center text-base font-bold text-white" href="teklifal.html">Teklif Al</a>
+</nav>
+</div>
 </header>
+<!-- ═════════════════ ORTAK HEADER SONU ═════════════════ -->
 <!-- Hero Section -->
-<section class="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
+<section class="relative h-[80vh] min-h-[600px] w-full overflow-hidden" data-cms-section="Üst Görsel Alanı">
 <div class="absolute inset-0 bg-charcoal/40 z-10"></div>
-<img class="absolute inset-0 h-full w-full object-cover" data-alt="Professional high-quality construction site at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZrJKCDKeE0PuJJykJUV-o97B3U7yE8yOerMSZHoLwYqOixgwqVjptjCmqLpCQlS7P85cBbzWMD531QDyDy2ee_UoHCE22ZZlzoddfZJjtdA62jUpGwOOITZCGvVoTr-q9qf6XuzRGdUlHhgnW-U7lSSRibmHiUpYX8pB_7yAeF2PbKjDQvwUQqP19Ltkrua8NDTEILGWPuMq6BR1_1u1-fWvora7eZIv9YCQw5IQi480fw3UvRcK9LvQx3b4LEu0MH0GMRWdLvkg"/>
+<img alt="Gün batımında çalışan modern bir inşaat şantiyesi" class="absolute inset-0 h-full w-full object-cover" src="assets/img/proje-11-0a68e1ff.jpg" fetchpriority="high"/>
 <div class="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
 <h1 class="max-w-4xl text-5xl md:text-7xl font-black text-white leading-tight tracking-tighter drop-shadow-2xl">Doruk İnşaat Avcılar – Güvenilir İnşaat ve Kentsel Dönüşüm Projeleri</h1>
 <p class="mt-6 max-w-2xl text-lg md:text-2xl text-slate-100 font-medium opacity-90">1987'den bugüne Avcılar'ın en güvenilir inşaat firması olarak kentsel dönüşümle geleceği tasarlıyoruz.</p>
 <div class="mt-10 flex flex-wrap gap-4">
-    <a href="projeler.html">
-<button class="bg-primary hover:bg-primary/90 text-charcoal text-lg font-bold px-10 py-4 rounded-lg transition-all transform hover:scale-105">
-                    Projelerimiz
-                </button></a>
-                <a href="iletisim.html">
-<button class="bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm text-lg font-bold px-10 py-4 rounded-lg transition-all">
-                    İletişim
-                </button></a>
+    <a class="inline-block bg-primary hover:bg-primary/90 text-white text-lg font-bold px-10 py-4 rounded-lg transition-all transform hover:scale-105" href="projeler.html">Projelerimiz</a>
+                <a class="inline-block bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm text-lg font-bold px-10 py-4 rounded-lg transition-all" href="iletisim.html">İletişim</a>
 </div>
 </div>
 </section>
 <!-- Stats Section -->
-<section class="relative z-30 -mt-16 mx-auto max-w-5xl px-6">
+<section class="relative z-30 -mt-16 mx-auto max-w-5xl px-6" data-cms-section="Rakamlarla Biz">
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 bg-white dark:bg-charcoal p-8 rounded-xl shadow-2xl border border-charcoal/5">
 <div class="text-center">
 <p class="text-4xl font-black text-primary">25+</p>
@@ -133,7 +182,7 @@ Teklif Al
 <div class="grid md:grid-cols-2 gap-16 items-center">
 <div class="relative">
 <div class="absolute -top-4 -left-4 w-24 h-24 bg-primary/20 rounded-full blur-3xl"></div>
-<img class="rounded-xl shadow-2xl relative z-10 w-full h-[500px] object-cover" data-alt="Modern architectural glass building facade" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbjYXVematiWUygQ-_Zy6InGl6AdrIR4po41rVXcunQPpQIPTxXIaYMbrqyGn65KGBS0MUPTeWcxE009_PN1l4QMfjSUQCD67CDt3XwNKPkXplQXockPRNWaKBUHIAS1rithgAnGKulhTuwjU3obeBUQmh4396X2Z7bOaoDMtAbIFKP2D_yUVfDXWbowkm22Hf7ZiHlElaA9b_KtdBitleEQiYtEn6GL5qHaa250EzGMT1zGbNbNZtx5CSsynM64ZfXbyHcm7AtEw"/>
+<img alt="Modern mimarili cam cepheli bina" class="rounded-xl shadow-2xl relative z-10 w-full h-[500px] object-cover" src="assets/img/proje-17-dffd6296.jpg" loading="lazy"/>
 <div class="absolute -bottom-6 -right-6 bg-primary p-8 rounded-lg shadow-xl z-20 hidden lg:block">
 <span class="material-symbols-outlined text-4xl text-charcoal">verified</span>
 </div>
@@ -159,10 +208,7 @@ Teklif Al
 <span class="material-symbols-outlined text-primary font-bold">check_circle</span>
 <span class="font-semibold">Avcılar Kentsel Dönüşüm Uzmanlığı</span>
 </li></ul>
-<a href="hakkimizda.html">
-<button class="flex items-center gap-2 font-bold text-charcoal dark:text-white group">
-                    Daha Fazla Bilgi <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
-</button></a>
+<a class="inline-flex items-center gap-2 font-bold text-charcoal dark:text-white group" href="hakkimizda.html">Daha Fazla Bilgi <span aria-hidden="true" class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span></a>
 </div>
 </div>
 </section>
@@ -200,13 +246,12 @@ Teklif Al
 <h2 class="text-4xl font-black">Avcılar ve İstanbul’daki Öne Çıkan Projelerimiz</h2>
 <p class="text-charcoal/60 dark:text-slate-400 max-w-xl">Portfolyomuzda yer alan en prestijli ve modern yapılarımızdan bazıları.</p>
 </div>
-<a href="projeler.html">
-<button class="text-primary font-bold flex items-center gap-2 border-b-2 border-primary pb-1">Tümünü Gör</button></a>
+<a class="text-primary font-bold inline-flex items-center gap-2 border-b-2 border-primary pb-1" href="projeler.html">Tümünü Gör</a>
 </div>
-<div class="grid md:grid-cols-3 gap-8">
+<div class="grid md:grid-cols-3 gap-8" data-projects="featured">
 <!-- Project 1 -->
 <div class="group relative overflow-hidden rounded-xl">
-<img class="h-[400px] w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Luxury residential complex with pool" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs_BUM_V5DfMZx22gvB_LxTMr5qEnGdoWKUZPYayrRkI1Q6PN2pyzW3zOtlC2a3iuZe93x3XE5swmevHjrP_sX_KlYJYwgSSwpD4ihZKu7bWf-5IVtJi2BriA7htrw-bdnV6kY43PFW6as4K8_AvLjjttYeweDTwxQthRsmi5PDJ2C022Upmc0tdzl2jHEhen-Dj-Nu_Mo2WfDvG-K34NvAJRySfPkEgEvlaXmI5ODeGAitywrqM_fT3BZz_kxpx_vkgnDFtsRliE"/>
+<img alt="Yüzme havuzlu lüks konut sitesi" class="h-[400px] w-full object-cover transition-transform duration-500 group-hover:scale-110" src="assets/img/proje-13-b046ac6d.jpg" loading="lazy"/>
 <div class="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent opacity-80"></div>
 <div class="absolute bottom-0 p-8 w-full">
 <p class="text-primary font-bold text-sm uppercase mb-2">Konut</p>
@@ -216,7 +261,7 @@ Teklif Al
 </div>
 <!-- Project 2 -->
 <div class="group relative overflow-hidden rounded-xl">
-<img class="h-[400px] w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Sleek modern office tower interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1dM60ZdYCNHjD105P2uVGCrvmjgfi7GpK3RFrPZnM2e8K7nNT3mt8cWlW2MWAUI8eQ3Et9EJDjtFx9Ab-2VK1nDsOb4i90AmJCtCtvh4oXnBWBS_f2QGaOZDtnuQAmFWzQPbwdxKIcLxBzutTN55qv0YjogH9PiZ4HqoFRfaxXGzyYL2rXYq641QyRPRC7nHIAIUyS8YJM4RIRbQIBSmntumq8AbJkfjvnXdrHRGIeA_5_Ab09sjs8SJP9Ytqedkg9TqOoY_m6E4"/>
+<img alt="Modern ofis kulesinin iç mekânı" class="h-[400px] w-full object-cover transition-transform duration-500 group-hover:scale-110" src="assets/img/proje-16-c8682f56.jpg" loading="lazy"/>
 <div class="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent opacity-80"></div>
 <div class="absolute bottom-0 p-8 w-full">
 <p class="text-primary font-bold text-sm uppercase mb-2">Ticari</p>
@@ -226,7 +271,7 @@ Teklif Al
 </div>
 <!-- Project 3 -->
 <div class="group relative overflow-hidden rounded-xl">
-<img class="h-[400px] w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Modern waterfront villas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2ycLDKS41u6W4PRWiuRjPlDcBpmODa9Qcm8A828xoC6KGvGTB8Rd779-iRVryE1-UdJXSwoUyxNqeaXhYFwGAjc-EJIitgcDAMnFe5_1LSS0LO8FL4rlR4XC1qfYnp6-fclG5rhuViW0H4xn4rxIzkUS_qc54alTtYEF9t9ZyXf9QSO-I4mPqLNui95lsubW7PQ2nSueyH2lK0W0IwWPQ0xCLCjUeVjZ5n0Q0550jTtQskQkHot42bS2xx3VJTpJ8o-UeaG3EfWY"/>
+<img alt="Deniz kenarında modern villalar" class="h-[400px] w-full object-cover transition-transform duration-500 group-hover:scale-110" src="assets/img/proje-07-5d3477b1.jpg" loading="lazy"/>
 <div class="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent opacity-80"></div>
 <div class="absolute bottom-0 p-8 w-full">
 <p class="text-primary font-bold text-sm uppercase mb-2">Villa</p>
@@ -236,180 +281,76 @@ Teklif Al
 </div>
 </div>
 </section>
-<!-- Footer -->
-<footer class="bg-charcoal pt-20 pb-10 px-6 text-white border-t border-white/5">
-
-<div class="mx-auto max-w-7xl grid md:grid-cols-4 gap-12 mb-16">
-
-<!-- Firma -->
+<!-- ═══════════ ORTAK FOOTER — tüm sayfalarda birebir aynı ═══════════ -->
+<footer class="border-t border-white/10 bg-charcoal px-6 pt-20 pb-10 text-white">
+<div class="mx-auto mb-14 grid max-w-7xl gap-12 md:grid-cols-2 lg:grid-cols-4">
+<!-- Marka -->
 <div class="space-y-6">
-
-<div class="flex items-center gap-2">
-
-<div class="text-primary">
-
-<svg class="h-8 w-8" fill="none" viewBox="0 0 48 48">
-<path d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648Z" fill="currentColor"/>
-</svg>
-
+<a aria-label="Doruk İnşaat Gayrimenkul — Ana Sayfa" class="inline-block" href="index.html">
+<img alt="Doruk İnşaat Gayrimenkul" class="h-12 w-auto" src="assets/logo-white.svg" loading="lazy"/>
+</a>
+<p class="leading-relaxed text-slate-400" data-site="footerText">1987 yılından beri Avcılar merkezli faaliyet gösteren Doruk İnşaat, kentsel dönüşüm ve modern konut projeleriyle güvenilir yaşam alanları inşa etmektedir.</p>
 </div>
-
-<span class="text-2xl font-black uppercase tracking-tighter">
-Doruk İnşaat Avcılar
-</span>
-
-</div>
-
-<p class="text-slate-400 leading-relaxed">
-
-1987 yılından beri Avcılar merkezli faaliyet gösteren Doruk İnşaat,
-kentsel dönüşüm ve modern konut projeleri ile güvenilir yaşam alanları
-inşa etmektedir.
-
-</p>
-
-</div>
-
-
-<!-- Menü -->
+<!-- Kurumsal -->
 <div class="space-y-6">
-
-<h4 class="text-xl font-bold border-l-4 border-primary pl-3">
-Kurumsal
-</h4>
-
+<h2 class="border-l-4 border-primary pl-3 text-xl font-bold">Kurumsal</h2>
 <ul class="space-y-3 text-slate-400">
-
-<li>
-<a href="index.html" class="hover:text-primary transition-colors">
-Ana Sayfa
-</a>
-</li>
-
-<li>
-<a href="hakkimizda.html" class="hover:text-primary transition-colors">
-Hakkımızda
-</a>
-</li>
-
-<li>
-<a href="projeler.html" class="hover:text-primary transition-colors">
-Projelerimiz
-</a>
-</li>
-
-<li>
-<a href="teklifal.html" class="hover:text-primary transition-colors">
-Teklif Al
-</a>
-</li>
-
-<li>
-<a href="iletisim.html" class="hover:text-primary transition-colors">
-İletişim
-</a>
-</li>
-
+<li><a class="transition-colors hover:text-primary" href="index.html">Ana Sayfa</a></li>
+<li><a class="transition-colors hover:text-primary" href="hakkimizda.html">Hakkımızda</a></li>
+<li><a class="transition-colors hover:text-primary" href="projeler.html">Projelerimiz</a></li>
+<li><a class="transition-colors hover:text-primary" href="teklifal.html">Teklif Al</a></li>
+<li><a class="transition-colors hover:text-primary" href="iletisim.html">İletişim</a></li>
 </ul>
-
 </div>
-
-
 <!-- Hizmetler -->
 <div class="space-y-6">
-
-<h4 class="text-xl font-bold border-l-4 border-primary pl-3">
-Hizmetlerimiz
-</h4>
-
+<h2 class="border-l-4 border-primary pl-3 text-xl font-bold">Hizmetlerimiz</h2>
 <ul class="space-y-3 text-slate-400">
-
-<li>Kentsel Dönüşüm</li>
-
-<li>Konut Projeleri</li>
-
-<li>Ticari Yapılar</li>
-
-<li>Gayrimenkul Geliştirme</li>
-
+<li><a class="transition-colors hover:text-primary" href="index.html#hizmetler">Kentsel Dönüşüm</a></li>
+<li><a class="transition-colors hover:text-primary" href="projeler.html">Konut Projeleri</a></li>
+<li><a class="transition-colors hover:text-primary" href="index.html#hizmetler">Ticari Yapılar</a></li>
+<li><a class="transition-colors hover:text-primary" href="index.html#hizmetler">Gayrimenkul Geliştirme</a></li>
 </ul>
-
 </div>
-
-
 <!-- İletişim -->
 <div class="space-y-6">
-
-<h4 class="text-xl font-bold border-l-4 border-primary pl-3">
-İletişim
-</h4>
-
+<h2 class="border-l-4 border-primary pl-3 text-xl font-bold">İletişim</h2>
 <ul class="space-y-4 text-slate-400">
-
 <li class="flex items-start gap-3">
-
-<span class="material-symbols-outlined text-primary">
-location_on
-</span>
-
-<span>
-Avcılar, İstanbul
-</span>
-
+<span aria-hidden="true" class="material-symbols-outlined text-primary">location_on</span>
+<a class="transition-colors hover:text-primary" data-site="mapsUrl" href="https://www.google.com/maps/search/?api=1&query=Cihangir+Mah.+E-5+Karayolu+No%3A182+Avc%C4%B1lar+%C4%B0stanbul" rel="noopener" target="_blank"><span data-site="address">Cihangir Mah. E-5 Karayolu Üzeri No:182, Avcılar / İstanbul</span></a>
 </li>
-
-<li class="flex items-center gap-3">
-
-<span class="material-symbols-outlined text-primary">
-phone
-</span>
-
-<span>
-+90 5XX XXX XX XX
-</span>
-
+<li class="flex items-start gap-3" data-site-item="" style="display:none">
+<span aria-hidden="true" class="material-symbols-outlined text-primary">phone</span>
+<a class="transition-colors hover:text-primary" data-site="phone" href="tel:"></a>
 </li>
-
-<li class="flex items-center gap-3">
-
-<span class="material-symbols-outlined text-primary">
-mail
-</span>
-
-<span>
-info@dorukinsaatavcilar.com
-</span>
-
+<li class="flex items-start gap-3">
+<span aria-hidden="true" class="material-symbols-outlined text-primary">mail</span>
+<a class="break-words text-[15px] transition-colors hover:text-primary" data-site="email" href="mailto:dorukemlakgayrimenkul@gmail.com">dorukemlakgayrimenkul@gmail.com</a>
 </li>
-
 </ul>
-
+<!-- Sosyal medya — panelde adres girilmemişse otomatik gizlenir -->
+<ul class="flex flex-wrap gap-3 pt-2">
+<li data-social-item="" style="display:none"><a aria-label="Facebook" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-slate-400 transition-colors hover:border-primary hover:bg-primary hover:text-white" data-site="social.facebook" href="#"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a></li>
+<li data-social-item="" style="display:none"><a aria-label="Instagram" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-slate-400 transition-colors hover:border-primary hover:bg-primary hover:text-white" data-site="social.instagram" href="#"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a></li>
+<li data-social-item="" style="display:none"><a aria-label="LinkedIn" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-slate-400 transition-colors hover:border-primary hover:bg-primary hover:text-white" data-site="social.linkedin" href="#"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a></li>
+<li data-social-item="" style="display:none"><a aria-label="YouTube" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-slate-400 transition-colors hover:border-primary hover:bg-primary hover:text-white" data-site="social.youtube" href="#"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a></li>
+<li data-social-item="" style="display:none"><a aria-label="WhatsApp" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-slate-400 transition-colors hover:border-primary hover:bg-primary hover:text-white" data-site="social.whatsapp" href="#"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.988 2.896 9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a></li>
+</ul>
 </div>
-
 </div>
-
-
-<!-- Alt Footer -->
-
-<div class="mx-auto max-w-7xl pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-
-<p>
-© 2024 Doruk İnşaat Avcılar – Tüm Hakları Saklıdır
-</p>
-
-<div class="flex gap-6">
-
-<a href="#" class="hover:text-white transition-colors">
-KVKK
-</a>
-
-<a href="#" class="hover:text-white transition-colors">
-Gizlilik Politikası
-</a>
-
+<!-- Alt footer -->
+<div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-slate-500 md:flex-row">
+<p>© <span data-year="">2026</span> Doruk İnşaat Gayrimenkul — Tüm Hakları Saklıdır.</p>
+<nav aria-label="Yasal bağlantılar" class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+<a class="transition-colors hover:text-white" href="kvkk.html">KVKK Aydınlatma Metni</a>
+<a class="transition-colors hover:text-white" href="gizlilik.html">Gizlilik Politikası</a>
+<a class="transition-colors hover:text-white" href="iletisim.html">İletişim</a>
+</nav>
 </div>
-
-</div>
-
 </footer>
+<!-- ═════════════════ ORTAK FOOTER SONU ═════════════════ -->
+<script defer="" src="js/site.js"></script>
+<script src="js/content.js" type="module"></script>
+<script src="js/projects.js" type="module"></script>
 </body></html>

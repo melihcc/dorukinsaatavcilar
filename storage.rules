@@ -1,0 +1,31 @@
+rules_version = '2';
+
+// Doruk İnşaat — Storage güvenlik kuralları
+// Firebase Console → Storage → Rules ekranına yapıştırıp "Publish" deyin.
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null
+          && firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid));
+    }
+
+    // Panelden yüklenen tüm görseller buraya gider.
+    match /site/{allPaths=**} {
+      // Site görselleri herkese açık okunur.
+      allow read: if true;
+
+      // Yükleme/silme: yalnızca yönetici, yalnızca görsel, en fazla 8 MB.
+      allow write: if isAdmin()
+                   && request.resource.size < 8 * 1024 * 1024
+                   && request.resource.contentType.matches('image/.*');
+      allow delete: if isAdmin();
+    }
+
+    // Diğer tüm yollar kapalı.
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

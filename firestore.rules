@@ -1,0 +1,83 @@
+rules_version = '2';
+
+// Doruk İnşaat — Firestore güvenlik kuralları
+// Firebase Console → Firestore Database → Rules ekranına yapıştırıp "Publish" deyin.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Giriş yapan kullanıcının admins koleksiyonunda kaydı var mı?
+    function isAdmin() {
+      return request.auth != null
+          && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // ---- Yönetici listesi -------------------------------------------------
+    // Kullanıcı yalnızca kendi kaydını okuyabilir. Yeni yönetici eklemek
+    // sadece Firebase Console'dan yapılır (istemciden yazma tamamen kapalı).
+    match /admins/{uid} {
+      allow read:  if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    // ---- Site ayarları, sayfa içerikleri, projeler ------------------------
+    // Herkes okuyabilir (site bunları göstermek zorunda), sadece yönetici yazar.
+    match /site/{docId} {
+      allow read:  if true;
+      allow write: if isAdmin();
+    }
+
+    match /content/{pageId} {
+      allow read:  if true;
+      allow write: if isAdmin();
+    }
+
+    match /projects/{projectId} {
+      allow read:  if true;
+      allow write: if isAdmin();
+    }
+
+    // ---- Teklif formu -----------------------------------------------------
+    // Ziyaretçi form gönderebilir; okuma/silme yalnızca yöneticide.
+    // Alan adları ve uzunluklar sınırlanarak kötüye kullanım zorlaştırılır.
+    match /teklifler/{id} {
+      allow create: if request.resource.data.keys()
+                        .hasOnly(['name','phone','email','projectType','message','createdAt'])
+                    && request.resource.data.name is string
+                    && request.resource.data.name.size() > 0
+                    && request.resource.data.name.size() < 120
+                    && request.resource.data.get('phone', '').size() < 40
+                    && request.resource.data.get('email', '').size() < 200
+                    && request.resource.data.get('projectType', '').size() < 80
+                    && request.resource.data.get('message', '').size() < 5000;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ---- Trigger Email eklentisinin kuyruğu -------------------------------
+    // Yalnızca yazılır; kimse okuyamaz.
+    //
+    // ÖNEMLİ: alıcı adresi burada SABİTTİR. Aksi hâlde bu koleksiyon herkesin
+    // istediği adrese mail attırabildiği açık bir posta rölesine dönüşürdü;
+    // kurallar istemciyi tanımadığı için formdaki güvenlik doğrulaması bunu
+    // engelleyemez. Sabit alıcıyla kötüye kullanımın azami sonucu, firmanın
+    // kendi gelen kutusuna form spam'i düşmesidir.
+    //
+    // Alıcı adresi değişirse bu satırdaki adresi ve js/site-config.js
+    // dosyasındaki MAIL_ALICI değerini birlikte güncelleyin.
+    match /mail/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['to','message'])
+                    && request.resource.data.to == ['dorukemlakgayrimenkul@gmail.com']
+                    && request.resource.data.message.keys().hasOnly(['subject','text'])
+                    && request.resource.data.message.subject is string
+                    && request.resource.data.message.subject.size() < 200
+                    && request.resource.data.message.text is string
+                    && request.resource.data.message.text.size() < 6000;
+      allow read, update, delete: if false;
+    }
+
+    // ---- Diğer her şey kapalı --------------------------------------------
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="noindex, nofollow" name="robots"/>
+<title>Yönetim Paneli | Doruk İnşaat Gayrimenkul</title>
+<link href="../assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    theme: { extend: {
+      colors: {
+        primary: "#ed1c24",
+        charcoal: "#1c170d",
+        ink: "#17140e",
+        paper: "#f6f5f3"
+      },
+      fontFamily: { display: ["Public Sans", "sans-serif"] },
+      borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" }
+    } }
+  }
+</script>
+<style>
+  body { font-family: 'Public Sans', sans-serif; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .fld { width: 100%; border-radius: .5rem; border: 1px solid #e2e0dc; background: #fff;
+         padding: .6rem .8rem; font-size: .9rem; transition: border-color .15s, box-shadow .15s; }
+  .fld:focus { outline: none; border-color: #ed1c24; box-shadow: 0 0 0 3px rgba(237,28,36,.12); }
+  textarea.fld { min-height: 6.5rem; line-height: 1.6; resize: vertical; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:.45rem;
+         border-radius:.5rem; padding:.6rem 1.1rem; font-size:.875rem; font-weight:700;
+         transition: all .15s; cursor:pointer; border:1px solid transparent; }
+  .btn-primary { background:#ed1c24; color:#fff; }
+  .btn-primary:hover { background:#d4171e; }
+  .btn-ghost { background:#fff; color:#17140e; border-color:#e2e0dc; }
+  .btn-ghost:hover { border-color:#ed1c24; color:#ed1c24; }
+  .btn-danger { background:#fff; color:#c11; border-color:#f3c9cb; }
+  .btn-danger:hover { background:#c11; color:#fff; border-color:#c11; }
+  .btn:disabled { opacity:.5; cursor:not-allowed; }
+  .navlink { display:flex; align-items:center; gap:.75rem; border-radius:.5rem;
+             padding:.65rem .85rem; font-size:.9rem; font-weight:600; color:#c9c4bb;
+             transition: all .15s; cursor:pointer; width:100%; text-align:left; }
+  .navlink:hover { background:rgba(255,255,255,.07); color:#fff; }
+  .navlink.on { background:#ed1c24; color:#fff; }
+  .card { background:#fff; border:1px solid #e9e7e3; border-radius:.75rem; }
+  details.card > summary { cursor:pointer; list-style:none; padding:1rem 1.25rem;
+                           font-weight:700; display:flex; align-items:center; gap:.5rem; }
+  details.card > summary::-webkit-details-marker { display:none; }
+  details.card[open] > summary { border-bottom:1px solid #e9e7e3; }
+  .chev { transition: transform .2s; }
+  details[open] .chev { transform: rotate(90deg); }
+  .lbl { display:block; font-size:.72rem; font-weight:800; text-transform:uppercase;
+         letter-spacing:.06em; color:#8a8378; margin-bottom:.35rem; }
+</style>
+</head>
+<body class="bg-paper text-ink">
+
+<!-- ══════════════════ GİRİŞ EKRANI ══════════════════ -->
+<div class="flex min-h-screen items-center justify-center px-6" id="viewLogin">
+  <div class="w-full max-w-sm">
+    <img alt="Doruk İnşaat Gayrimenkul" class="mx-auto mb-10 h-12 w-auto" src="../assets/logo.svg"/>
+    <div class="card p-8">
+      <h1 class="mb-1 text-xl font-black">Yönetim Paneli</h1>
+      <p class="mb-6 text-sm text-neutral-500">Devam etmek için giriş yapın.</p>
+      <form class="space-y-4" id="loginForm">
+        <div>
+          <label class="lbl" for="loginEmail">E-posta</label>
+          <input autocomplete="username" class="fld" id="loginEmail" required type="email"/>
+        </div>
+        <div>
+          <label class="lbl" for="loginPass">Şifre</label>
+          <input autocomplete="current-password" class="fld" id="loginPass" required type="password"/>
+        </div>
+        <p class="hidden rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700" id="loginError"></p>
+        <button class="btn btn-primary w-full" id="loginBtn" type="submit">Giriş Yap</button>
+      </form>
+      <button class="mt-4 w-full text-center text-xs font-semibold text-neutral-500 hover:text-primary" id="resetPass" type="button">Şifremi unuttum</button>
+    </div>
+    <a class="mt-6 block text-center text-xs font-semibold text-neutral-400 hover:text-primary" href="../index.html">← Siteye dön</a>
+  </div>
+</div>
+
+<!-- ══════════════════ YETKİ BEKLİYOR ══════════════════ -->
+<div class="hidden min-h-screen items-center justify-center px-6" id="viewDenied">
+  <div class="card w-full max-w-lg p-8 text-center">
+    <span aria-hidden="true" class="material-symbols-outlined mb-3 text-5xl text-primary">lock</span>
+    <h1 class="mb-2 text-xl font-black">Bu hesabın yönetim yetkisi yok</h1>
+    <p class="mb-5 text-sm leading-relaxed text-neutral-600">
+      Giriş başarılı, ancak hesap yönetici listesinde değil. Firebase Console →
+      Firestore → <b>admins</b> koleksiyonuna aşağıdaki kimlikle bir belge ekleyin.
+    </p>
+    <div class="mb-2 rounded-lg bg-neutral-100 p-3 text-left">
+      <p class="lbl">Belge kimliği (UID)</p>
+      <code class="block break-all text-sm font-bold" id="deniedUid"></code>
+    </div>
+    <p class="mb-6 text-xs text-neutral-500">Hesap: <span id="deniedEmail"></span></p>
+    <div class="flex justify-center gap-3">
+      <button class="btn btn-ghost" id="deniedCopy" type="button">UID'yi kopyala</button>
+      <button class="btn btn-ghost" id="deniedRetry" type="button">Tekrar dene</button>
+      <button class="btn btn-danger" id="deniedOut" type="button">Çıkış</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PANEL ══════════════════ -->
+<div class="hidden min-h-screen lg:grid lg:grid-cols-[260px_1fr]" id="viewApp">
+
+  <!-- Kenar çubuğu -->
+  <aside class="sticky top-0 z-40 flex h-auto flex-col bg-ink px-4 py-5 lg:h-screen" id="sidebar">
+    <div class="mb-6 flex items-center justify-between">
+      <img alt="Doruk İnşaat Gayrimenkul" class="h-9 w-auto" src="../assets/logo-white.svg"/>
+      <button aria-label="Menü" class="text-white lg:hidden" id="sideToggle" type="button">
+        <span aria-hidden="true" class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+    <nav class="hidden flex-1 space-y-1 lg:block" id="sideNav">
+      <button class="navlink on" data-tab="genel" type="button"><span aria-hidden="true" class="material-symbols-outlined text-[20px]">contact_page</span>Genel Bilgiler</button>
+      <button class="navlink" data-tab="icerik" type="button"><span aria-hidden="true" class="material-symbols-outlined text-[20px]">edit_document</span>Sayfa İçerikleri</button>
+      <button class="navlink" data-tab="projeler" type="button"><span aria-hidden="true" class="material-symbols-outlined text-[20px]">apartment</span>Projeler</button>
+      <button class="navlink" data-tab="teklifler" type="button"><span aria-hidden="true" class="material-symbols-outlined text-[20px]">inbox</span>Teklif Talepleri</button>
+      <a class="navlink" href="../index.html" target="_blank"><span aria-hidden="true" class="material-symbols-outlined text-[20px]">open_in_new</span>Siteyi Görüntüle</a>
+    </nav>
+    <div class="mt-6 hidden border-t border-white/10 pt-4 lg:block" id="sideFooter">
+      <p class="mb-2 truncate px-1 text-xs text-neutral-400" id="whoami"></p>
+      <button class="navlink" id="logout" type="button"><span aria-hidden="true" class="material-symbols-outlined text-[20px]">logout</span>Çıkış Yap</button>
+    </div>
+  </aside>
+
+  <!-- İçerik -->
+  <main class="min-w-0 px-5 py-8 lg:px-10">
+
+    <!-- ---------- GENEL BİLGİLER ---------- -->
+    <section class="mx-auto max-w-3xl" data-panel="genel">
+      <h1 class="text-2xl font-black">Genel Bilgiler</h1>
+      <p class="mb-7 mt-1 text-sm text-neutral-500">Burada girdiğiniz bilgiler sitenin tüm sayfalarındaki alt bilgi ve iletişim bölümlerinde otomatik güncellenir.</p>
+
+      <div class="card mb-5 space-y-5 p-6">
+        <h2 class="text-base font-black">İletişim</h2>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div><label class="lbl" for="s_phone">Telefon</label><input class="fld" id="s_phone" placeholder="+90 212 000 00 00" type="text"/><p class="mt-1.5 text-xs text-neutral-500">Boş bırakırsanız telefon satırı sitede hiç görünmez.</p></div>
+          <div><label class="lbl" for="s_email">E-posta</label><input class="fld" id="s_email" placeholder="info@ornek.com" type="email"/></div>
+        </div>
+        <div><label class="lbl" for="s_address">Adres</label><input class="fld" id="s_address" type="text"/></div>
+        <div>
+          <label class="lbl" for="s_mapsUrl">Google Haritalar bağlantısı</label>
+          <input class="fld" id="s_mapsUrl" placeholder="https://maps.app.goo.gl/..." type="url"/>
+          <p class="mt-1.5 text-xs text-neutral-500">Google Haritalar'da firmanızı bulun → <b>Paylaş</b> → <b>Bağlantıyı kopyala</b> → buraya yapıştırın.</p>
+        </div>
+        <div><label class="lbl" for="s_workingHours">Çalışma saatleri</label><input class="fld" id="s_workingHours" placeholder="Pazartesi - Cuma, 09:00 - 18:00" type="text"/></div>
+      </div>
+
+      <div class="card mb-5 space-y-5 p-6">
+        <h2 class="text-base font-black">Sosyal Medya</h2>
+        <p class="-mt-3 text-xs text-neutral-500">Boş bıraktığınız hesapların ikonu sitede görünmez.</p>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div><label class="lbl" for="s_facebook">Facebook</label><input class="fld" id="s_facebook" placeholder="https://facebook.com/..." type="url"/></div>
+          <div><label class="lbl" for="s_instagram">Instagram</label><input class="fld" id="s_instagram" placeholder="https://instagram.com/..." type="url"/></div>
+          <div><label class="lbl" for="s_linkedin">LinkedIn</label><input class="fld" id="s_linkedin" placeholder="https://linkedin.com/company/..." type="url"/></div>
+          <div><label class="lbl" for="s_youtube">YouTube</label><input class="fld" id="s_youtube" placeholder="https://youtube.com/@..." type="url"/></div>
+          <div><label class="lbl" for="s_whatsapp">WhatsApp</label><input class="fld" id="s_whatsapp" placeholder="https://wa.me/905XXXXXXXXX" type="url"/></div>
+        </div>
+      </div>
+
+      <div class="card mb-5 space-y-5 p-6">
+        <h2 class="text-base font-black">Alt Bilgi Metni</h2>
+        <p class="-mt-3 text-xs text-neutral-500">Tüm sayfaların alt bilgisinde, logonun altındaki tanıtım yazısı. Boş bırakırsanız şablondaki metin kalır.</p>
+        <textarea class="fld" id="s_footerText" placeholder="Firmanızı kısaca tanıtan metin"></textarea>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button class="btn btn-primary" id="saveSettings" type="button">Değişiklikleri Kaydet</button>
+        <span class="text-sm font-semibold" id="settingsStatus"></span>
+      </div>
+    </section>
+
+    <!-- ---------- SAYFA İÇERİKLERİ ---------- -->
+    <section class="mx-auto hidden max-w-4xl" data-panel="icerik">
+      <h1 class="text-2xl font-black">Sayfa İçerikleri</h1>
+      <p class="mb-6 mt-1 text-sm text-neutral-500">Bir sayfa seçin, ardından başlık, yazı ve görselleri düzenleyin. Değiştirmediğiniz alanlar sitedeki hâliyle kalır.</p>
+
+      <div class="mb-6 flex flex-wrap items-end gap-3">
+        <div class="min-w-[220px] flex-1">
+          <label class="lbl" for="pageSelect">Sayfa</label>
+          <select class="fld" id="pageSelect">
+            <option value="index">Ana Sayfa</option>
+            <option value="hakkimizda">Hakkımızda</option>
+            <option value="projeler">Projeler (sayfa başlığı)</option>
+            <option value="iletisim">İletişim</option>
+            <option value="teklifal">Teklif Al</option>
+            <option value="kvkk">KVKK Aydınlatma Metni</option>
+            <option value="gizlilik">Gizlilik Politikası</option>
+          </select>
+        </div>
+        <a class="btn btn-ghost" id="pagePreview" href="../index.html" target="_blank">
+          <span aria-hidden="true" class="material-symbols-outlined text-[18px]">visibility</span>Sayfayı Aç
+        </a>
+      </div>
+
+      <div id="fieldsBox"></div>
+
+      <div class="sticky bottom-0 mt-6 flex items-center gap-3 border-t border-neutral-200 bg-paper py-4">
+        <button class="btn btn-primary" id="saveContent" type="button">Değişiklikleri Kaydet</button>
+        <span class="text-sm font-semibold" id="contentStatus"></span>
+      </div>
+    </section>
+
+    <!-- ---------- PROJELER ---------- -->
+    <section class="mx-auto hidden max-w-4xl" data-panel="projeler">
+      <div id="projListView">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h1 class="text-2xl font-black">Projeler</h1>
+            <p class="mt-1 text-sm text-neutral-500">Sıralama, sitedeki görünme sırasını belirler.</p>
+          </div>
+          <button class="btn btn-primary" id="projNew" type="button">
+            <span aria-hidden="true" class="material-symbols-outlined text-[18px]">add</span>Yeni Proje
+          </button>
+        </div>
+        <div class="space-y-3" id="projList"></div>
+      </div>
+
+      <div class="hidden" id="projEditView">
+        <button class="mb-5 flex items-center gap-1 text-sm font-bold text-neutral-500 hover:text-primary" id="projBack" type="button">
+          <span aria-hidden="true" class="material-symbols-outlined text-[18px]">arrow_back</span>Proje listesine dön
+        </button>
+        <h1 class="mb-6 text-2xl font-black" id="projEditTitle">Yeni Proje</h1>
+
+        <details class="card mb-4" open>
+          <summary><span aria-hidden="true" class="material-symbols-outlined chev text-[18px]">chevron_right</span>Temel Bilgiler</summary>
+          <div class="space-y-5 p-6">
+            <div><label class="lbl" for="p_title">Proje adı</label><input class="fld" id="p_title" type="text"/></div>
+            <div>
+              <label class="lbl" for="p_slug">Adres eki <span class="font-normal normal-case tracking-normal text-neutral-400">(bağlantıda görünen kısım)</span></label>
+              <input class="fld" id="p_slug" placeholder="proje-adindan-otomatik-uretilir" type="text"/>
+              <p class="mt-1.5 text-xs text-neutral-500">
+                Bağlantı: <code class="rounded bg-neutral-100 px-1">projelerdetay.html?proje=<span id="p_slugPreview">…</span></code><br/>
+                Boş bırakırsanız proje adından otomatik üretilir. Proje yayına girdikten sonra
+                değiştirmeyin — eski bağlantılar çalışmaya devam eder ama arama motorundaki sırası sıfırlanır.
+              </p>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-3">
+              <div><label class="lbl" for="p_category">Kategori</label><input class="fld" id="p_category" placeholder="Konut / Ticari / Villa" type="text"/></div>
+              <div><label class="lbl" for="p_location">Konum</label><input class="fld" id="p_location" placeholder="İstanbul, Avcılar" type="text"/></div>
+              <div><label class="lbl" for="p_year">Yıl</label><input class="fld" id="p_year" placeholder="2024" type="text"/></div>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label class="lbl" for="p_status">Durum</label>
+                <select class="fld" id="p_status">
+                  <option value="tamamlanan">Tamamlanan</option>
+                  <option value="devam">Devam Eden</option>
+                  <option value="planlanan">Planlanan</option>
+                </select>
+              </div>
+              <div>
+                <label class="lbl" for="p_order">Sıra numarası</label>
+                <input class="fld" id="p_order" type="number"/>
+              </div>
+            </div>
+            <div><label class="lbl" for="p_summary">Kısa özet <span class="font-normal normal-case tracking-normal text-neutral-400">(kartlarda görünür)</span></label><textarea class="fld" id="p_summary" style="min-height:4.5rem"></textarea></div>
+            <div><label class="lbl" for="p_description">Detaylı açıklama <span class="font-normal normal-case tracking-normal text-neutral-400">(paragraflar arasında bir boş satır bırakın)</span></label><textarea class="fld" id="p_description" style="min-height:11rem"></textarea></div>
+            <div class="flex flex-wrap gap-6 pt-1">
+              <label class="flex items-center gap-2 text-sm font-semibold"><input class="h-4 w-4 rounded text-primary focus:ring-primary" id="p_featured" type="checkbox"/>Ana sayfada öne çıkar</label>
+              <label class="flex items-center gap-2 text-sm font-semibold"><input class="h-4 w-4 rounded text-primary focus:ring-primary" id="p_published" type="checkbox"/>Sitede yayında</label>
+            </div>
+          </div>
+        </details>
+
+        <details class="card mb-4" open>
+          <summary><span aria-hidden="true" class="material-symbols-outlined chev text-[18px]">chevron_right</span>Kapak Görseli</summary>
+          <div class="p-6" id="p_coverBox"></div>
+        </details>
+
+        <details class="card mb-4">
+          <summary><span aria-hidden="true" class="material-symbols-outlined chev text-[18px]">chevron_right</span>Görsel Galeri</summary>
+          <div class="p-6">
+            <div class="mb-4 grid grid-cols-2 gap-3 sm:grid-cols-4" id="p_gallery"></div>
+            <button class="btn btn-ghost" id="p_galleryAdd" type="button">
+              <span aria-hidden="true" class="material-symbols-outlined text-[18px]">add_photo_alternate</span>Görsel Ekle
+            </button>
+          </div>
+        </details>
+
+        <details class="card mb-4">
+          <summary><span aria-hidden="true" class="material-symbols-outlined chev text-[18px]">chevron_right</span>Proje Künyesi</summary>
+          <div class="p-6">
+            <p class="mb-4 text-xs text-neutral-500">Örnek: “İnşaat Alanı → 12.500 m²”, “Daire Sayısı → 120”</p>
+            <div class="space-y-3" id="p_specs"></div>
+            <button class="btn btn-ghost mt-4" id="p_specsAdd" type="button"><span aria-hidden="true" class="material-symbols-outlined text-[18px]">add</span>Satır Ekle</button>
+          </div>
+        </details>
+
+        <details class="card mb-4">
+          <summary><span aria-hidden="true" class="material-symbols-outlined chev text-[18px]">chevron_right</span>Özellikler &amp; Donatılar</summary>
+          <div class="p-6">
+            <div class="space-y-3" id="p_features"></div>
+            <button class="btn btn-ghost mt-4" id="p_featuresAdd" type="button"><span aria-hidden="true" class="material-symbols-outlined text-[18px]">add</span>Özellik Ekle</button>
+          </div>
+        </details>
+
+        <details class="card mb-4">
+          <summary><span aria-hidden="true" class="material-symbols-outlined chev text-[18px]">chevron_right</span>Ulaşım ve Konum</summary>
+          <div class="space-y-5 p-6">
+            <div><label class="lbl" for="p_locationTitle">Başlık</label><input class="fld" id="p_locationTitle" placeholder="Şehrin Ana Arterinde" type="text"/></div>
+            <div><label class="lbl" for="p_locationText">Açık adres</label><input class="fld" id="p_locationText" type="text"/></div>
+            <div>
+              <span class="lbl">Yakın noktalar</span>
+              <div class="space-y-3" id="p_nearby"></div>
+              <button class="btn btn-ghost mt-3" id="p_nearbyAdd" type="button"><span aria-hidden="true" class="material-symbols-outlined text-[18px]">add</span>Satır Ekle</button>
+            </div>
+            <div>
+              <span class="lbl">Konum görseli</span>
+              <div id="p_mapBox"></div>
+            </div>
+          </div>
+        </details>
+
+        <div class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-neutral-200 bg-paper py-4">
+          <button class="btn btn-primary" id="projSave" type="button">Projeyi Kaydet</button>
+          <button class="btn btn-danger" id="projDelete" type="button">Projeyi Sil</button>
+          <span class="text-sm font-semibold" id="projStatus"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- TEKLİF TALEPLERİ ---------- -->
+    <section class="mx-auto hidden max-w-4xl" data-panel="teklifler">
+      <h1 class="text-2xl font-black">Teklif Talepleri</h1>
+      <p class="mb-6 mt-1 text-sm text-neutral-500">Siteden gelen formlar. En yeniler üstte.</p>
+      <div class="space-y-3" id="teklifList"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Yükleme göstergesi -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/40" id="busy">
+  <div class="rounded-xl bg-white px-6 py-4 text-sm font-bold shadow-2xl" id="busyText">Yükleniyor…</div>
+</div>
+
+<input accept="image/*" class="hidden" id="filePicker" type="file"/>
+
+<script src="js/admin.js" type="module"></script>
+</body></html>

@@ -1,101 +1,97 @@
-import { db } from "./firebase.js";
+/* Doruk İnşaat — teklif alma formu
+ *
+ * Talepler `teklifler` koleksiyonuna yazılır, bilgilendirme e-postası ise
+ * Trigger Email eklentisinin `mail` kuyruğuna bırakılır.
+ *
+ * Not: Turnstile doğrulaması yalnızca tarayıcıda kontrol edilir; asıl koruma
+ * firestore.rules dosyasındadır (alıcı adresi sabit, alanlar sınırlı).
+ */
 
+import { db } from "./firebase.js";
+import { MAIL_ALICI } from "./site-config.js";
 import {
   collection,
   addDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-
 const form = document.getElementById("teklifForm");
-const status = document.getElementById("formStatus");
-const submitButton = document.getElementById("submitButton");
+if (form) {
+  const durumEl = document.getElementById("formStatus");
+  const buton = document.getElementById("submitButton");
+  const butonIcerik = buton.innerHTML;
 
+  const deger = (id) => document.getElementById(id).value.trim();
 
-form.addEventListener("submit", async (e) => {
-
-  e.preventDefault();
-
-   const token = document.querySelector('[name="cf-turnstile-response"]')?.value;
-
-  if (!token) {
-    alert("Lütfen güvenlik doğrulamasını tamamlayın.");
-    return;
+  function durum(mesaj, tur) {
+    durumEl.textContent = mesaj;
+    durumEl.classList.remove("hidden", "text-green-600", "text-red-600");
+    durumEl.classList.add(tur === "ok" ? "text-green-600" : "text-red-600");
   }
 
-  submitButton.disabled = true;
-  submitButton.innerText = "Gönderiliyor...";
+  function mesgul(acik) {
+    buton.disabled = acik;
+    buton.innerHTML = acik ? "Gönderiliyor..." : butonIcerik;
+  }
 
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const email = document.getElementById("email").value;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const projectType =
-    document.querySelector('input[name="projectType"]:checked')?.value || "";
+    const token = form.querySelector('[name="cf-turnstile-response"]')?.value;
+    if (!token) {
+      durum("Lütfen güvenlik doğrulamasını tamamlayın.", "hata");
+      return;
+    }
 
-  const message = document.getElementById("message").value;
+    const name = deger("name");
+    const phone = deger("phone");
+    const email = deger("email");
+    const message = deger("message");
+    const projectType =
+      form.querySelector('input[name="projectType"]:checked')?.value || "";
 
+    mesgul(true);
 
-  try {
+    try {
+      await addDoc(collection(db, "teklifler"), {
+        name,
+        phone,
+        email,
+        projectType,
+        message,
+        createdAt: serverTimestamp()
+      });
+    } catch (err) {
+      console.error(err);
+      durum("Talebiniz gönderilemedi. Lütfen tekrar deneyin ya da bize telefonla ulaşın.", "hata");
+      mesgul(false);
+      return;
+    }
 
-    // 1️⃣ Teklifi Firestore'a kaydet
-
-    await addDoc(collection(db, "teklifler"), {
-      name,
-      phone,
-      email,
-      projectType,
-      message,
-      createdAt: serverTimestamp()
-    });
-
-
-    // 2️⃣ Email göndermek için mail collection'a yaz
-
-    await addDoc(collection(db, "mail"), {
-
-      to: ["dorukemlakgayrimenkul@gmail.com"],
-
-      message: {
-        subject: "Yeni Teklif Talebi",
-
-        text:
-`Yeni teklif formu gönderildi
-
-Ad: ${name}
-Telefon: ${phone}
-Email: ${email}
-Proje Tipi: ${projectType}
-
-Mesaj:
-${message}`
-      }
-
-    });
-
-
-    status.classList.remove("hidden");
-    status.classList.add("text-green-600");
-
-    status.innerText =
-      "✔ Teklif talebiniz gönderildi.";
+    // Bilgilendirme e-postası ayrı denenir: kuyruğa yazılamasa bile talep
+    // panele düştüğü için ziyaretçiye hata gösterilmez.
+    try {
+      await addDoc(collection(db, "mail"), {
+        to: [MAIL_ALICI],
+        message: {
+          subject: `Yeni teklif talebi — ${name}`,
+          text:
+            `Siteden yeni bir teklif talebi geldi.\n\n` +
+            `Ad Soyad: ${name}\n` +
+            `Telefon: ${phone || "—"}\n` +
+            `E-posta: ${email || "—"}\n` +
+            `Proje Tipi: ${projectType || "—"}\n\n` +
+            `Mesaj:\n${message || "—"}`
+        }
+      });
+    } catch (err) {
+      console.error("Bilgilendirme e-postası kuyruğa alınamadı:", err);
+    }
 
     form.reset();
-
-
-  } catch (error) {
-
-    status.classList.remove("hidden");
-    status.classList.add("text-red-500");
-
-    status.innerText =
-      "Bir hata oluştu.";
-
-    console.error(error);
-
-  }
-
-  submitButton.disabled = false;
-  submitButton.innerText = "Teklifi Gönder";
-
-});
+    // Doğrulama tek kullanımlıktır: yeni gönderim için pencereyi tazele
+    window.turnstile?.reset(form.querySelector(".cf-turnstile"));
+    durum("✔ Teklif talebiniz bize ulaştı. En kısa sürede size dönüş yapacağız.", "ok");
+    mesgul(false);
+  });
+}
