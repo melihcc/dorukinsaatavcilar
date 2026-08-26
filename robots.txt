@@ -1,5 +1,14 @@
 User-agent: *
-Disallow: /admin/
 Allow: /
+
+# Yönetim paneli
+Disallow: /admin/
+
+# Depoda duran ama sitenin parçası olmayan dosyalar.
+# (Gizli bilgi içermezler; yalnızca arama sonuçlarında çıkmasınlar diye.)
+Disallow: /ADMIN-KURULUM.md
+Disallow: /YAYINLAMA.md
+Disallow: /firestore.rules
+Disallow: /storage.rules
 
 Sitemap: https://dorukinsaatavcilar.com/sitemap.xml
